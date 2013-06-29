@@ -1,0 +1,200 @@
+! anrxc X application resource database
+! ~/.Xdefaults
+! ven. 25 mai 2012 19:26:59 CEST
+!       _
+!__   _(_)_ __   ___ _ __
+!\ \ / / | '_ \ / _ \ '__|
+! \ V /| | |_) |  __/ |
+!  \_/ |_| .__/ \___|_|
+!        |_|
+!
+!{{{ Xft
+! fait dans ~/.config/fontconfig/fonts.conf
+Xft.dpi:        96
+ Xft.antialias:  0
+Xft.hinting:    1
+Xft.hintstyle:  hintfull
+Xft.rgba:       rgb
+!}}}
+!{{{ Emacs
+Emacs.FontBackend: xft
+Emacs.font: profont-8
+Emacs*font: fontset-normal
+!}}}
+!{{{ URxvt
+!
+! General
+URxvt.buffered:          false
+URxvt.termName:           rxvt-unicode
+URxvt.loginShell:         true
+URxvt.scrollBar:         false
+URxvt.secondaryScroll:    true
+URxvt.saveLines:         65535
+URxvt.cursorBlink:       false
+URxvt.cursorUnderline:   true
+URxvt.urgentOnBell:       true
+URxvt.override-redirect:false
+URxvt.borderLess:       false
+URxvt.internalBorder:       0
+URxvt.externalBorder:       0
+
+! Extensions
+URxvt.perl-lib:        /usr/lib/URxvt/perl/
+URxvt.perl-ext-common: default,matcher,searchable-scrollback,url-picker
+
+! perl url-picker
+    URxvt.url-picker.launcher:  urxvt-to-uzbl.sh
+    URxvt.keysym.M-g:     perl:url-picker
+! END perl url-picker
+
+! yankable urls
+! Alt+u: enter selection mode
+! K select next upward URL
+! J select next downward URL
+! Return: Open selected URL in browser and quit selection mode
+! O: open URL witout quit selection mode
+! Y: yank URL and quit selection mode
+! Esc: Cancel URL selection mode
+URxvt.underlineURLs:    true
+URxvt.colorUL: #86a2be
+! Catch ugly URLs
+URxvt.cutchars:        '"'()*<>[]{|}
+!
+! Appearance
+!
+! PROFONT ! luke, finalement pour profont en passant par 'xfontsel' :
+URxvt.font: -*-profont-*-*-normal-*-12-*-*-*-*-*-iso8859-*
+! pas de 'bold' parce que pas lisible, tant pis.
+URxvt.boldFont: -*-profont-*-*-normal-*-12-*-*-*-*-*-iso8859-*
+!
+! ANONYMOUS FONT
+!URxvt.font: xft:anonymous Pro-Powerline:size=9
+!URxvt.boldFont: xft:anonymous Pro-Powerline:size=9
+!URxvt.font: xft:DejaVuSansMono:size=8
+!URxvt.boldFont: xft:DejaVuSansMonoBold:size=8
+!URxvt.font: xft:Terminus:size=8
+!URxvt.boldFont: xft:Terminus:size=8
+!URxvt.font: xft:Terminus:size=10
+!URxvt.boldFont: xft:Terminus:size=10
+!
+! mensch for powerline
+! URxvt.font: xft:Mensch\ for\ Powerline:size=9
+! URxvt.boldFont: xft:Mensch\ for\ Powerline:bold:size=9
+!
+! Cursor
+!URxvt.cursorColor: #DCDCCC
+URxvt.cursorColor:          darkorange1
+! URLs
+!URxvt..colorUL:    #ffffff
+!
+! 
+! Zenburn color-scheme
+! background like vim zenburn dark
+URxvt.background:  #1c1c1c
+URxvt.foreground:  #dcdccc
+! black + red
+!URxvt.color0:     #3f3f3f
+URxvt.color0:      #1E2320
+URxvt.color1:      #705050
+! green + yellow
+URxvt.color2:      #60b48a
+URxvt.color3:      #dfaf8f
+! blue + purple
+URxvt.color4:      #506070
+URxvt.color5:      #dc8cc3
+! cyan + white
+URxvt.color6:      #8cd0d3
+URxvt.color7:      #dcdccc
+! bright-black + bright-red
+URxvt.color8:      #709080
+URxvt.color9:      #dca3a3
+! bright-green + bright-yellow
+URxvt.color10:     #c3bf9f
+URxvt.color11:     #f0dfaf
+! bright-blue + bright-purple
+URxvt.color12:     #94bff3
+URxvt.color13:     #ec93d3
+! bright-cyan + bright-white
+URxvt.color14:     #93e0e3
+URxvt.color15:     #ffffff
+
+
+/* True transparency uniquement sous compiz par exemple (compositeur de fenetre)*/
+! URxvt.depth: 32
+! URxvt.background: rgba:1111/1111/1111/dddd
+/* Fausse transparence */
+! URxvt.inheritPixmap:    true
+! URxvt.shading:          15
+! ! Pseudo Transparency
+! URxvt.transparent:      true
+
+/* URLs clickable */
+!URxvt.urlLauncher:      /usr/bin/dwb
+URxvt.urlLauncher:     urxvt-to-uzbl.sh
+URxvt.matcher.button:   1
+
+/* Color Tab */
+URxvt.tabbed.tabbar-fg: 2
+URxvt.tabbed.tabbar-bg: :
+URxvt.tabbed.tab-fg:    3
+URxvt.tabbed.tab-bg:    0
+
+
+!}}}
+! !{{{ XTERM 
+xterm*internalBorder:        0
+xterm*loginShell:         true
+xterm*scrollBar:         false
+xterm*cursorBlink:       false
+!xterm*geometry:         80x26
+xterm*saveLines:         65535
+xterm*dynamicColors:        on
+xterm*highlightSelection: true
+! Appearance
+xterm*utf8:            2
+xterm*eightBitInput:   true
+xterm*metaSendsEscape: true
+xterm*cursorColor: #DCDCCC
+! Zenburn
+xterm*background:  #3f3f3f
+xterm*foreground:  #dcdccc
+xterm*color0:      #1E2320
+xterm*color1:      #705050
+xterm*color2:      #60b48a
+xterm*color3:      #dfaf8f
+xterm*color4:      #506070
+xterm*color5:      #dc8cc3
+xterm*color6:      #8cd0d3
+xterm*color7:      #dcdccc
+xterm*color8:      #709080
+xterm*color9:      #dca3a3
+xterm*color10:     #c3bf9f
+xterm*color11:     #f0dfaf
+xterm*color12:     #94bff3
+xterm*color13:     #ec93d3
+xterm*color14:     #93e0e3
+xterm*color15:     #ffffff
+!}}}
+!{{{ XPDF
+! xpdf*foreground:     black
+! xpdf*background:     white
+xpdf*foreground:     #222222
+xpdf*background:     #dcdccc
+xpdf*paperColor:    #bbbbbb
+xpdf*enableFreeType:    true
+xpdf*antialias:         true
+!xpdf*urlCommand:        /usr/bin/dwb %s
+xpdf*initialZoom: width
+xpdf*contiunous: true
+xpdf*viKeys: true
+!}}}
+!{{{ Xclipboard
+xclipboard.geometry:      287x195+993+15
+XClipboard*international: true
+XClipboard*font:          -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-2
+XClipboard*borderColor:   #3F3F3F
+XClipboard*cursorColor:   Gray93
+XClipboard*Foreground:    #F0DFAF
+XClipboard*Background:    #3F3F3F
+XClipboard*form.*.shapeStyle: rectangle
+!}}}
