@@ -1,0 +1,17 @@
+[core]
+	editor = vim
+[user]
+	name = luckrn
+	mail = luckrn@gmail.com
+[color]
+	ui = true
+	diff = auto
+	status = auto
+	branch = auto
+[alias]
+    ci=commit
+    co=checkout
+    st=status
+    br=branch
+[credential]
+	helper = cache
