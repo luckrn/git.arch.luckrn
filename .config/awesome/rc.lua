@@ -15,6 +15,7 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 vicious = require("vicious")
+local scratch = require("scratch")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -315,7 +316,7 @@ end, 10)
 --}}}
 --}}}
 
---{{{ set wibox
+--{{{ set wibox TOP
 -- Create a wibox for each screen and add it
 mywibox = {}
 mypromptbox = {}
@@ -381,7 +382,7 @@ for s = 1, screen.count() do
     -- Create a tasklist widget
     mytasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, mytasklist.buttons)
 
-    -- Create the wibox
+    -- {{{Create the wibox
     --mywibox[s] = awful.wibox({ position = "top", screen = s, height = 12 })
     mywibox[s] = awful.wibox({ position = "top", screen = s, height = 12, 
                                fg = beautiful.fg_normal,
@@ -389,15 +390,15 @@ for s = 1, screen.count() do
                                border_color = beautiful.border_wibox,
                                border_width = 1
                                })
-
-    -- Widgets that are aligned to the left
+    --}}}
+    -- {{{Widgets that are aligned to the left
     local left_layout = wibox.layout.fixed.horizontal()
     left_layout:add(mylauncher)
     left_layout:add(mytaglist[s])
     left_layout:add(mylayoutbox[s]) -- moved !
     left_layout:add(mypromptbox[s])
-
-    -- Widgets that are aligned to the right
+    -- }}}
+    -- {{{Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
     -- cpu
@@ -437,7 +438,7 @@ for s = 1, screen.count() do
     right_layout:add(separator)
     right_layout:add(mytextclock)
 --    right_layout:add(mylayoutbox[s])
-
+    -- }}}
     -- Now bring it all together (with the tasklist in the middle)
     local layout = wibox.layout.align.horizontal()
     layout:set_left(left_layout)
@@ -448,7 +449,7 @@ for s = 1, screen.count() do
 end
 --}}}
 
--- }}}
+--}}}
 -- {{{ Mouse bindings
 root.buttons(awful.util.table.join(
     awful.button({ }, 3, function () mymainmenu:toggle() end),
@@ -534,6 +535,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,}, "F11",                function () awful.util.spawn("sudo systemctl poweroff") end),
     -- indispensable
     --awful.key({ modkey },"x",                   function () teardrop("urxvt", "bottom", "center", 0.95, 0.4, false) end),
+    awful.key({ modkey },"x",                   function () scratch.drop("urxvt", "bottom", "center", 0.8, 0.30) end),
 
     -- luke son clavier Typematrix
       awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn("amixer -q sset Master 2dB-") end),
