@@ -132,7 +132,7 @@ if [[ -r ~/.localdirs ]]; then
 fi
 
 # Git, zsh completion
-source /usr/share/git/completion/git-completio.zsh
+#source /usr/share/git/completion/git-completion.zsh
 
 # }}}
 

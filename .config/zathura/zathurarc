@@ -1,0 +1,71 @@
+# mise en page
+set page-padding 1
+set pages-per-row 1
+set show-scroolbars false
+set zoom-step 5
+set adjust-open "width"
+
+# Adaptation à BÉPO
+
+# hjkl → ctsr
+map t scroll down
+map T scroll half_up
+map s scroll up
+map S scroll half_down
+map c scroll left
+map r scroll right
+
+# JK → TS
+map T navigate next
+map S navigate previous
+
+
+# (R)otate 
+map R rotate rotate-cw
+
+# R → u
+map u reload
+
+# b ↔ a car le a est plus accessible
+map z adjust_window best-fit
+map w adjust_window width
+
+# Mode Index
+# Cette configuration ne modifie pas les binding pour le mode Index
+
+# b et espace se comportent comme dans less
+map <Space> navigate next
+map b navigate previous
+
+# zoom
+map p zoom in normal
+map o zoom out normal
+
+map ZZ quit
+map normal G scroll full_down
+map normal gg scroll full_up
+
+set font "profont normal 8"
+#set font "fixed normal 9"
+set default-bg "#1c1c1c"
+set default-fg "#dcdccc"
+set inputbar-bg "#1c1c1c"
+set inputbar-fg "#dcdccc"
+set statusbar-bg "#1c1c1c"
+set statusbar-fg "#dcdccc"
+set tabbar-bg "#191919"
+set tabbar-fg "#98a7b6"
+set tabbar-focus-bg "#232323"
+set tabbar-focus-fg "#a488d9"
+set completion-bg "#232323"
+set completion-fg "#bbbbbb"
+set completion-group-bg "#101010"
+set completion-group-fg "#eeeeee"
+set completion-highlight-bg "#98a7b2"
+set completion-highlight-fg "#232323"
+set notification-error-bg "#d554dd"
+set notification-error-fg "#eeeeee"
+set notification-warning-bg "#98a7b6"
+set notification-warning-fg "#000000"
+set recolor-darkcolor "#cccccc"
+set recolor-lightcolor "#121212"
