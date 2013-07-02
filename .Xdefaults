@@ -40,7 +40,7 @@ URxvt.externalBorder:       0
 
 ! Extensions
 URxvt.perl-lib:        /usr/lib/URxvt/perl/
-URxvt.perl-ext-common: default,matcher,searchable-scrollback,url-picker
+URxvt.perl-ext-common: default,matcher,searchable-scrollback,url-picker,tabbedex
 
 ! perl url-picker
     URxvt.url-picker.launcher:  urxvt-to-uzbl.sh
@@ -90,11 +90,11 @@ URxvt.cursorColor:          darkorange1
 ! 
 ! Zenburn color-scheme
 ! background like vim zenburn dark
-URxvt.background:  #1c1c1c
+!URxvt.background:  #1c1c1c !see line 124 (vraie transparence)
 URxvt.foreground:  #dcdccc
 ! black + red
-!URxvt.color0:     #3f3f3f
-URxvt.color0:      #1E2320
+URxvt.color0:     #3f3f3f
+!URxvt.color0:      #1E2320
 URxvt.color1:      #705050
 ! green + yellow
 URxvt.color2:      #60b48a
@@ -120,13 +120,13 @@ URxvt.color15:     #ffffff
 
 
 /* True transparency uniquement sous compiz par exemple (compositeur de fenetre)*/
-! URxvt.depth: 32
-! URxvt.background: rgba:1111/1111/1111/dddd
+URxvt.depth: 32
+URxvt.background: rgba:0000/0000/0200/c800
 /* Fausse transparence */
-! URxvt.inheritPixmap:    true
-! URxvt.shading:          15
+!URxvt.inheritPixmap:    true
+!URxvt.shading:          15
 ! ! Pseudo Transparency
-! URxvt.transparent:      true
+!URxvt.transparent:      true
 
 /* URLs clickable */
 !URxvt.urlLauncher:      /usr/bin/dwb
