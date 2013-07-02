@@ -1,0 +1,4 @@
+polkit.addRule (function (a,s) {
+        if (a.id.indexOf ('org.freedesktop.udisks.') == 0 && s.user == 'luke')
+                return polkit.Result.YES;
+});

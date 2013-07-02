@@ -1,0 +1,4 @@
+polkit.addRule (function (a,s) {
+        if (a.id == 'org.freedesktop.udisks.filesystem-mount-system' && s.user == 'luke')
+                return polkit.Result.YES;
+});
