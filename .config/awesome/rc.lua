@@ -448,7 +448,6 @@ for s = 1, screen.count() do
     mywibox[s]:set_widget(layout)
 end
 --}}}
-
 --}}}
 -- {{{ Mouse bindings
 root.buttons(awful.util.table.join(
@@ -747,9 +746,10 @@ client.connect_signal("manage", function (c, startup)
 end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus  c.opacity = 1 end)
-client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal c.opacity = 0.8 end)
+client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal c.opacity = 0.9 end)
 
 -- autostart
 
 --awful.util.spawn_with_shell("/home/luke/bin/mount_freebox") -- après le fstab (noauto) et avec un coup de notify-send
+awful.util.spawn_with_shell("/usr/bin/nitrogen --restore") -- ne marche pas (plus!) dans zenburn.lua
 -- }}}

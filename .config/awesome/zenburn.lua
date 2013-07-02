@@ -17,7 +17,7 @@ theme = {}
 --theme.confdir       = awful.util.getdir("config")
 --theme.wallpaper_cmd = { "/usr/bin/nitrogen --restore" }
 --theme.wallpaper_cmd = { "awsetbg /usr/share/awesome/themes/zenburn/zenburn-background.png" }
-theme.wallpaper = "/home/luke/images/wallpaper/wood_1600_GRAY.jpg"
+--theme.wallpaper = "/home/luke/images/wallpaper/matrix.jpg"
 -- }}}
 -- {{{ Styles
 theme.font      = "profont 8"
