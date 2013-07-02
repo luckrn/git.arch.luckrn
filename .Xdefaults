@@ -121,7 +121,7 @@ URxvt.color15:     #ffffff
 
 /* True transparency uniquement sous compiz par exemple (compositeur de fenetre)*/
 URxvt.depth: 32
-URxvt.background: rgba:0000/0000/0200/c800
+URxvt.background: [94]#000000 
 /* Fausse transparence */
 !URxvt.inheritPixmap:    true
 !URxvt.shading:          15
