@@ -172,6 +172,8 @@ fileviewer *.mp3 mp3info
 
 " Video
 filextype *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv
+    \ {view using cvlc - luke}
+    \ cvlc %f,
         \ {View using ffplay}
         \ ffplay -fs %c,
         \ {View using Dragon}
@@ -190,10 +192,15 @@ filetype *.o nm %f | less
 " Image
 filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
         \ {View in sxiv}
-        \ sxiv,
-        \ {View in gpicview}
-        \ gpicview %c,
-fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm convert -identify %f -verbose /dev/null
+        \ view_sxiv,
+"        \ {View in gpicview}
+"        \ gpicview %c,
+"fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm convert -identify %f -verbose /dev/null
+
+"filextype *.jpg,*.jpeg,*.png,*.gif
+       "\ {View in feh}
+       "\ feh -FZ %d --start-at %d/%c 2>/dev/null
+
 
 " MD5
 filetype *.md5
@@ -279,7 +286,8 @@ nmap s :shell<cr>
 nmap S :sort<cr>
 nmap w :view<cr>
 nmap o :!gvim --remote-tab-silent %f<cr>
-nmap O :!gvim %f<cr>
+"nmap O :!gvim %f<cr>
+nmap O :!urxvt -e vim %f<cr>
 
 " Open file in the background using its default program
 nmap gb :file &<cr>l
@@ -315,6 +323,5 @@ nmap <f6> :move<cr>
 nmap <f7> :mkdir<space>
 nmap <f8> :delete<cr>
 
-"luke
-source ~/.vimrc.bepo
-
+" luke source bépo
+source /home/luke/.vimrc.bepo
