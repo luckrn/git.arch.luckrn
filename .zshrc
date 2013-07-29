@@ -21,6 +21,8 @@
     export EDITOR="${VISUAL}"
 # }}}
 # Alias commande {{{
+    # clear
+      alias c='clear'
     # ls
       alias lsd='lt -ld *(/)'
     # on/off
@@ -38,6 +40,7 @@
       alias pbcopy='xclip -selection clipboard'       # copy to the clipboard, ctrl+c, ctrl+shift+c
       alias pbpaste='xclip -selection clipboard -o'   # paste from clipboard, ctrl+v, ctrl+shift+v
       alias pbselect='xclip -selection primary -o'    # paste from highlight, middle click, shift+insert
+      alias uzbl='uzbl-tabbed'
 # }}}
 # Color in Man pages {{{
 # Get color support for 'less'
