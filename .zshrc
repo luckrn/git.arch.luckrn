@@ -21,6 +21,12 @@
     export EDITOR="${VISUAL}"
 # }}}
 # Alias commande {{{
+    # go ~/.local/share/uzbl
+      alias lsu='cd ~/.local/share/uzbl'
+    # go ~/.local/share/uzbl/userstyles
+      alias lsuu='cd ~/.local/share/uzbl/userstyles'
+    # ip sur le net pour vpn
+      alias ipnet='w3m -dump http://checkip.dyndns.org'
     # clear
       alias c='clear'
     # ls
@@ -49,7 +55,6 @@
 # Use colors for less, man, etc.
     [[ -f ~/.LESS_TERMCAP ]] && . ~/.LESS_TERMCAP
 # }}}
-
 # Alias executable {{{
   alias -s m4v="cvlc"
   alias -s mp4="cvlc"
