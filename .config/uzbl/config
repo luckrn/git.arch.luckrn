@@ -41,6 +41,7 @@ set scripts_dir      = @data_home/uzbl:@prefix/share/uzbl/examples/data:scripts
 
 
 # http://www.uzbl.org/wiki/change_style.sh
+# luke
 @on_event   LOAD_COMMIT    spawn @scripts_dir/change_style.sh
 # === Hardcoded handlers =====================================================
 
@@ -103,7 +104,7 @@ set download_handler    = sync_spawn @scripts_dir/download.sh
 # Custom CSS can be defined here, including link follower hint styles
 ##set stylesheet_uri = file://@config_home/uzbl/nightshift_eye-cARE.css
 #set stylesheet_uri = file://@config_home/uzbl/style.css
-#set stylesheet_uri = file:///home/luke/.config/uzbl/style.css
+#set stylesheet_uri = file:///home/luke/.local/share/uzbl/userstyles/style.css
 
 
 set show_status       = 1
@@ -135,13 +136,13 @@ set status_format_right = <span font_family="profont"><span foreground="#666">ur
 set title_format_long = \@keycmd_prompt \@raw_modcmd \@raw_keycmd \@TITLE - Uzbl browser <\@NAME> \@SELECTED_URI
 
 
-set default_font_family = 11
-set monospace_font_family = 11
-set cursive_font_family = 11
-set sans_serif_font_family = 11
-set fantasy_font_family = 11
-set monospace_size = 11
-set minimum_font_size = 11
+set default_font_family = 9
+set monospace_font_family = 9
+set cursive_font_family = 9
+set sans_serif_font_family = 9
+set fantasy_font_family = 9
+set monospace_size = 9
+set minimum_font_size = 9
 
 set title_format_long = \@keycmd_prompt \@raw_modcmd \@raw_keycmd \@TITLE - Uzbl browser <\@NAME> \@SELECTED_URI
 
@@ -314,7 +315,7 @@ set ebind     = @mode_bind global,-insert
 
 # Web searching binds
 
-@cbind  gg<Google:>_         = uri http://www.google.com/search?q=\@<encodeURIComponent(%r)>\@
+@cbind  gg<Google:>_         = uri http://www.google.fr/search?q=\@<encodeURIComponent(%r)>\@
 @cbind  ddg<DuckDuckGo:>_    = uri http://duckduckgo.com/?q=%s
 @cbind  \\awiki<Archwiki:>_  = uri http://wiki.archlinux.org/index.php/Special:Search?search=\@<encodeURIComponent(%r)>\@&go=Go
 @cbind  \\wiki<Wikipedia:>_  = uri http://fr.wikipedia.org/w/index.php?title=Special:Search&search=\@<encodeURIComponent(%r)>\@&go=Go
@@ -561,7 +562,7 @@ sync_spawn_exec @scripts_dir/load_cookies.sh @data_home/uzbl/session-cookies.txt
 set uri = about:blank
 #set uri = file:///home/luke/.local/share/uzbl/start.html
 ##set stylesheet_uri  = file://@config_home/uzbl/about:blank.css
-
+# privoxy
 set proxy_url=http://localhost:8118
 # vim: set fdm=syntax:
 @bind xurl = sh 'wget -O - "http://tinyurl.com/api-create.php?url=\@uri" | xclip'
