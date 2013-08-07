@@ -10,3 +10,5 @@ Les nombreux fichiers de configurations sous Linux bougent tout le temps. Pour e
 - Clavier BÉPO [clavier ergonomique français]
     - Ce driver impacte beaucoup les fichiers de configurations qui sont calés en AZERTY ou en QWERTY par défaut- ...
 
+
+Coucou Gwen
