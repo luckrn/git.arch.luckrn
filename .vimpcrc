@@ -1,0 +1,7 @@
+map t j
+map s k
+map T <C-D>
+map S <C-U>
+
+map r l
+map c h
