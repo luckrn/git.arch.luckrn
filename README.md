@@ -8,10 +8,7 @@ Caractéristique config :
 - Archlinux [OS]
 - Awesome [Tiling Windows manager]
 - ZSH [Shell]
-----------------------------------
 - Vim [Éditeur de texte]
 - Vimpc [client MPD {music}]
 - Zathura [viewver Pdf]
-----------------------------------
-- Clavier Dvorak BÉPO [clavier ergonomique français] (usefull with a keyboard TypeMatrix, cher mais bien) 
-----------------------------------
+- Clavier Dvorak BÉPO <clavier ergonomique français> (usefull with a keyboard TypeMatrix)
