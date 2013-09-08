@@ -3,12 +3,15 @@
 
 Les nombreux fichiers de configurations sous Linux bougent tout le temps. Pour essayer de les tenir à jour et pouvoir les utiliser d'une machine à l'autre, je publie ici ces fichiers.
 
+Caractéristique config :
+----------------------------------
 - Archlinux [OS]
 - Awesome [Tiling Windows manager]
 - ZSH [Shell]
+----------------------------------
 - Vim [Éditeur de texte]
-- Clavier BÉPO [clavier ergonomique français]
-    - Ce driver impacte beaucoup les fichiers de configurations qui sont calés en AZERTY ou en QWERTY par défaut- ...
-
-
-Coucou Gwen
+- Vimpc [client MPD {music}]
+- Zathura [viewver Pdf]
+----------------------------------
+- Clavier Dvorak BÉPO [clavier ergonomique français] (usefull with a keyboard TypeMatrix, cher mais bien) 
+----------------------------------
