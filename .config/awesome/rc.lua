@@ -1,8 +1,16 @@
--- awesome v3.5.1
+-- awesome v3.5.2 «The Fox»
 -- file: ~/.config/awesome/rc.lua
--- Last edit: sam. 29 juin 2013 16:55:01 CEST 
+-- Last edit: dim. 10 nov. 2013 18:32:44 CET 
 
--- Standard awesome library
+--            _
+-- _ __ ___  | |_   _  __ _
+--| '__/ __| | | | | |/ _` |
+--| | | (__ _| | |_| | (_| |
+--|_|  \___(_)_|\__,_|\__,_|
+--
+
+
+-- Standard awesome library {{{
 local gears = require("gears")
 local awful = require("awful")
 awful.rules = require("awful.rules")
@@ -16,7 +24,11 @@ local naughty = require("naughty")
 local menubar = require("menubar")
 vicious = require("vicious")
 local scratch = require("scratch")
-
+  -- toutes les fenetres actives en mosaique
+  require("revelation")
+-- complément de keynav (control mouse with keyboard)
+-- local rodentbane = require("rodentbane")
+-- }}}
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -104,7 +116,7 @@ for s = 1, screen.count() do
 end
 -- }}}
 -- {{{ Menu
--- Create a laucher widget and a main menu
+-- Create a laucher widget and a main menu {{{
 myawesomemenu = {
    { "manual", terminal .. " -e man awesome" },
    { "edit config", editor_cmd .. " " .. awesome.conffile },
@@ -131,6 +143,7 @@ awful.menu.menu_keys = { up    = { "s", "Up" },
                          back  = { "c", "Left" },
                          close = { "q", "Escape" },
                        }
+-- end original menu }}}
 
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
@@ -462,6 +475,9 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
 
+    -- luke revelation, fenêtre en mosaïque
+    awful.key({modkey}, "e",  revelation),
+
     awful.key({ modkey,           }, "t",
         function ()
             awful.client.focus.byidx( 1)
@@ -489,6 +505,11 @@ globalkeys = awful.util.table.join(
         end),
 
     -- {{{{ Add-on luke
+    -- Rodentbane : control mouse keyboard
+--    awful.key({ modkey, }, ".", function ()
+--        rodentbane.start()
+--        end),
+        
     -- dmenu
     awful.key({ modkey, "Alt"},            "F2",     function ()
     awful.util.spawn("dmenu_run -i -p 'Run command:' -fn '-*-profont-*-*-normal-*-11-*-*-*-*-*-iso8859-*' -nb '" .. 
@@ -514,8 +535,6 @@ globalkeys = awful.util.table.join(
         mywibox[mouse.screen].visible = not mywibox[mouse.screen].visible
       end),
 
-    -- luke revelation, fenêtre en mosaïque
-    --awful.key({ modkey }, "e",  revelation.revelation),
 
     -- luke add application switcher
     awful.key({ modkey }, "Escape",
@@ -752,4 +771,6 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 --awful.util.spawn_with_shell("/home/luke/bin/mount_freebox") -- après le fstab (noauto) et avec un coup de notify-send
 awful.util.spawn_with_shell("/usr/bin/nitrogen --restore") -- ne marche pas (plus!) dans zenburn.lua
+awful.util.spawn_with_shell("/usr/bin/mpd &") -- lance mpd depuis le serveur x (depuis ~/.xinitrc = erreur dans ~/.xerrors) 
+awful.util.spawn_with_shell("/usr/bin/keynav") -- lance keynav (mouseless with cursor. Ctrl , pour le lancer) 
 -- }}}
