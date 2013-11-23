@@ -1,0 +1,58 @@
+add
+good
+word
+zg
+bad
+suggest
+zG
+misspelled
+next
+Spell
+tabs
+plugin
+timestamp
+visual
+blockwise
+indent
+localleader
+redefinir
+to
+latex-suite
+enable
+when
+tex
+is
+loaded
+" set wm=0 " automatic wrapping at col 72
+" Init {{{
+cqt
+fo
+tw
+augroup
+autocmd
+BufEnter
+OverLength
+highlight OverLength ctermbg=darkgrey guibg=
+" wrapping
+" mouse ok for VimOrganizer
+" augroup vimrc_autocmds
+" mar. 22 mai 2012 19:09:51 CEST 
+vimrc
+" viper@luke
+set backup " make backup files
+set cursorcolumn " highlight the current column
+set cursorline " highlight the current line
+Folding
+" remplace all done by z= in the current window: :spellr[epall]
+set backup " make backup files
+line
+set
+set cursorcolumn " highlight the current column
+Rsync
+remote
+d'Andrew
+Tridgell
+rzip
+Ssh
+OpenSSH
+shell
