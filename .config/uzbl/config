@@ -42,7 +42,7 @@ set scripts_dir      = @data_home/uzbl:@prefix/share/uzbl/examples/data:scripts
 
 # http://www.uzbl.org/wiki/change_style.sh
 # luke
-@on_event   LOAD_COMMIT    spawn @scripts_dir/change_style.sh
+#@on_event   LOAD_COMMIT    spawn @scripts_dir/change_style.sh
 # === Hardcoded handlers =====================================================
 
 # These handlers can't be moved to the new event system yet as we don't
@@ -104,8 +104,7 @@ set download_handler    = sync_spawn @scripts_dir/download.sh
 # Custom CSS can be defined here, including link follower hint styles
 ##set stylesheet_uri = file://@config_home/uzbl/nightshift_eye-cARE.css
 #set stylesheet_uri = file://@config_home/uzbl/style.css
-#set stylesheet_uri = file:///home/luke/.local/share/uzbl/userstyles/style.css
-
+set stylesheet_uri = file:///home/luke/.local/share/uzbl/userstyles/style.css
 
 set show_status       = 1
 set status_top        = 0
@@ -259,6 +258,9 @@ set ebind     = @mode_bind global,-insert
 # open a new window or a new tab (see the on_event NEW_WINDOW settings above)
 @cbind  w            = event REQ_NEW_WINDOW
 
+# Comment TEST
+@cbind e = set show_tablist = \@<("\@show_tablist" === "0" ? 1 : 0)>\@
+#
 # Page movement binds
 @cbind  j            = scroll vertical 20
 @cbind  k            = scroll vertical -20
@@ -284,6 +286,8 @@ set ebind     = @mode_bind global,-insert
 @cbind  <nobreakspace><Shift>    = scroll vertical -100%
 @cbind  G            = scroll vertical end
 @cbind  _G<Go To:>_  = scroll horizontal %r!
+
+@cbind  0   = toggle stylesheet_uri file:///home/luke/.local/share/uzbl/userstyles/midnight.css file:///home/luke/.local/share/uzbl/userstyles/style0.css file:///home/luke/.local/share/uzbl/userstyles/style.css file:///home/luke/.local/share/uzbl/userstyles/carbon.css
 
 # Navigation binds
 @cbind  b   = back
@@ -316,25 +320,26 @@ set ebind     = @mode_bind global,-insert
 # Web searching binds
 
 @cbind  gg<Google:>_         = uri http://www.google.fr/search?q=\@<encodeURIComponent(%r)>\@
+@cbind  xq<Ixquick:>_  = uri http://ixquick.com/do/metasearch.pl?query=\@<encodeURIComponent(%r)>\@
 @cbind  ddg<DuckDuckGo:>_    = uri http://duckduckgo.com/?q=%s
 @cbind  \\awiki<Archwiki:>_  = uri http://wiki.archlinux.org/index.php/Special:Search?search=\@<encodeURIComponent(%r)>\@&go=Go
 @cbind  \\wiki<Wikipedia:>_  = uri http://fr.wikipedia.org/w/index.php?title=Special:Search&search=\@<encodeURIComponent(%r)>\@&go=Go
 
 #test surfraw
 @cbind \\sr<Surfraw:>_      = sh 'surfraw -g %s'
-bind \\gg _ = sh 'surfraw -g %s' google
-bind \\google _ = sh 'surfraw -g $8 %s' google
-bind \\glucky _ = sh 'surfraw -g $8 -l %s' google
-bind \\gi _ = sh 'surfraw -g $8 -search=$9 %s' google images
-bind \\gimage _ = sh 'surfraw -g $8 -search=$9 %s' google images
-bind \\glinux _ = sh 'surfraw -g $8 -search=$9 %s' google linux
-bind \\gbsd _ = sh 'surfraw -g $8 -search=$9 %s' google bsd
-bind \\gusa _ = sh 'surfraw -g $8 -search=$9 %s' google unclesam
-bind \\wiki _ = sh 'surfraw -g $8 %s' wikipedia
-bind \\imdb _ = sh 'surfraw -g $8 %s' imdb
-bind \\aur _ = sh 'surfraw -g $8 %s' aur
-bind \\freshmeat _ = sh 'surfraw -g $8 %s' freshmeat
-bind \\weather _ = sh 'surfraw -g $8 %s' weather
+@cbind \\gg _ = sh 'surfraw -g %s' google
+@cbind \\google _ = sh 'surfraw -g $8 %s' google
+@cbind \\glucky _ = sh 'surfraw -g $8 -l %s' google
+@cbind \\gi _ = sh 'surfraw -g $8 -search=$9 %s' google images
+@cbind \\gimage _ = sh 'surfraw -g $8 -search=$9 %s' google images
+@cbind \\glinux _ = sh 'surfraw -g $8 -search=$9 %s' google linux
+@cbind \\gbsd _ = sh 'surfraw -g $8 -search=$9 %s' google bsd
+@cbind \\gusa _ = sh 'surfraw -g $8 -search=$9 %s' google unclesam
+@cbind \\wiki _ = sh 'surfraw -g $8 %s' wikipedia
+@cbind \\imdb _ = sh 'surfraw -g $8 %s' imdb
+@cbind \\aur _ = sh 'surfraw -g $8 %s' aur
+@cbind \\freshmeat _ = sh 'surfraw -g $8 %s' freshmeat
+@cbind \\weather<Weather:>_ = sh 'surfraw -g $8 %s' weather
 
 
 # Handy binds
@@ -357,11 +362,11 @@ bind \\weather _ = sh 'surfraw -g $8 %s' weather
 
 
 # The above script can be bound in your uzbl config in the following ways. To open the selected page in the current window:
-# 
-@bind O = sh 'uri=`$XDG_DATA_HOME/uzbl/scripts/load_url_from_surfraw.sh` && echo "uri $uri" > $4'
+# Comment 
+#@cbind o = sh 'uri=`/home/luke/.local/share/uzbl/scripts/load_url_from_surfraw.sh` && echo "uri $uri" > $4'
 # You can also use it to open a new UZBL instance with the new URL (similar to tab-open in vimperator):
 # 
-# @bind t = sh 'uri=`$XDG_DATA_HOME/uzbl/scripts/load_url_from_surfraw.sh` && uzbl-browser --uri $uri'
+#@bind o = sh 'uri=`$XDG_DATA_HOME/uzbl/scripts/load_url_from_surfraw.sh` && uzbl-browser --uri $uri'
 # Note that this last way indicates a way to call this script directly from your window manager.
 # 
 # sh 'uri=`$XDG_DATA_HOME/uzbl/scripts/load_url_from_surfraw.sh` && uzbl-browser --uri $uri'
