@@ -20,13 +20,13 @@
 
 /* Make descendents of the body element transparent.  Formerly "DIV + SPAN" rules. */
 
-BODY * {background-color: transparent !important}
+/* BODY * {background-color: transparent !important} */
 
 
 
 /* Give id's BG hopefully */
 
-DIV[id] {background-color: inherit !important}
+/* DIV[id] {background-color: inherit !important} */
 
 
 
@@ -36,7 +36,7 @@ SPAN:not(:empty):not([class*="icon"]):not([id*="icon"]):not([class*="star"]):not
 
 
 
-background: none transparent !important;
+/* background: none transparent !important; */
 
 border-color: #000 !important}
 
@@ -48,7 +48,7 @@ html:root > BODY > * > * > * > *:not(INPUT):not([onclick]) > DIV:not(:empty):not
 
 
 
-{background: none #1c1c1c !important}
+/* {background: none #1c1c1c !important} */
 
 
 
@@ -58,7 +58,7 @@ html:root > BODY > * > * > * > *:not(INPUT):not([onclick]) > DIV:not(:empty):not
 
 
 
-SUMMARY, DETAILS {background-color: inherit !important}
+/* SUMMARY, DETAILS {background-color: inherit !important} */
 
 
 
@@ -76,7 +76,7 @@ BLOCKQUOTE,
 
 [class*="quote"],
 
-TD[style*="inset"][class="alt2"]   { background-color: #00090F !important }
+/* TD[style*="inset"][class="alt2"]   { background-color: #00090F !important } */
 
 
 
@@ -90,7 +90,7 @@ TD[style*="inset"][class="alt2"]   { background-color: #00090F !important }
 
 
 
-HEADER, #header {background: -moz-linear-gradient(#333,#141414) transparent !important;}
+/* HEADER, #header {background: -moz-linear-gradient(#333,#141414) transparent !important;} */
 
 #header h1 {background-color: transparent !important;}
 
@@ -150,7 +150,7 @@ DT A:not([class*="icon"]):not([id*="icon"]):not([onclick])
 
 
 
-{background-image: none !important; text-indent: 0 !important}
+/* {background-image: none !important; text-indent: 0 !important} */
 
 
 
