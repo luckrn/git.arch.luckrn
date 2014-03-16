@@ -7,18 +7,18 @@
 -- | '_ \_  / '_ \
 -- | |_) / /| | | |
 -- |_.__/___|_| |_|
--- 
--- file: zenburn.lua
--- last edit: sam. 29 juin 2013 16:57:35 CEST 
+--
 -------------------------------
+
 
 -- {{{ Main
 theme = {}
 --theme.confdir       = awful.util.getdir("config")
-theme.wallpaper_cmd = { "/usr/bin/nitrogen --restore" }
+--theme.wallpaper_cmd = { "/usr/bin/nitrogen --restore" }
 --theme.wallpaper_cmd = { "awsetbg /usr/share/awesome/themes/zenburn/zenburn-background.png" }
---theme.wallpaper = "/home/luke/images/wallpaper/mosaic/mosaic-wallpaper-1920x1080.jpg"
+theme.wallpaper = "/home/luke/images/wallpaper/wood_1600_GRAY.jpg"
 -- }}}
+
 -- {{{ Styles
 theme.font      = "profont 8"
 --theme.font      = "anonymous pro 9"
@@ -83,6 +83,7 @@ theme.menu_height = 15
 theme.menu_width  = 400
 -- }}}
 -- }}}
+
 -- {{{ Icons
 --
 -- {{{ Taglist icons
@@ -122,12 +123,10 @@ theme.widget_netup  = "/home/luke/.config/awesome/icons/up.png"
 theme.widget_wifi   = "/home/luke/.config/awesome/icons/wifi.png"
 theme.widget_mail   = "/home/luke/.config/awesome/icons/mail.png"
 theme.widget_vol    = "/home/luke/.config/awesome/icons/vol.png"
-theme.widget_pacman = "/home/luke/.config/awesome/icons/pacman.png"
 theme.widget_org    = "/home/luke/.config/awesome/icons/cal.png"
 theme.widget_date   = "/home/luke/.config/awesome/icons/time.png"
 theme.widget_crypto = "/home/luke/.config/awesome/icons/crypto.png"
 theme.widget_sep    = "/home/luke/.config/awesome/icons/separator.png"
-theme.widget_disk   = "/home/luke/.config/awesome/icons/disk.png"
 -- }}}
 
 -- {{{ Titlebar icons
@@ -155,5 +154,6 @@ theme.titlebar_maximized_button_focus_inactive  = "/home/luke/.config/awesome/ic
 theme.titlebar_maximized_button_normal_inactive = "/home/luke/.config/awesome/icons/titlebar/maximized_normal_inactive.png"
 -- }}}
 -- }}}
+
 
 return theme

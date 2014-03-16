@@ -1,0 +1,24 @@
+extension "awesome"
+
+color "<span color=\"$style\">$text</span>"
+
+colormap
+"green"         "#8cd083"
+"red"           "#FF0000"
+"darkred"       "#c3bf9f"
+"blue"          "#c3bf9f"
+"brown"         "#dca3a3"
+"pink"          "#dca3a3"
+"yellow"        "#FFCC00"
+"cyan"          "#dfaf8f"
+"purple"        "#c3bf9f"
+"orange"        "#dca3a3"
+"brightorange"  "#dca3a3"
+"brightgreen"   "#dca3a3"
+"darkgreen"     "#dca3a3"
+"black"         "#8da2c3"
+"teal"          "#008080"
+"gray"          "#808080"
+"darkblue"      "#c3bf9f"
+default         "#dcdccc"
+end

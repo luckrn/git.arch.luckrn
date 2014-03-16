@@ -1,16 +1,14 @@
--- awesome v3.5.2 «The Fox»                  --
--- file: ~/.config/awesome/rc.lua            --
--- Last edit: sam. 28 déc. 2013 17:59:54 CET --
+-- awesome v3.5.2 «The Fox»
+-- file: ~/.config/awesome/rc.lua
+-- Last edit: dim. 10 nov. 2013 18:32:44 CET 
 
-  -------------------------
-  -- -+- luke on Viper2 -+-
-  -------------------------
 --            _
 -- _ __ ___  | |_   _  __ _
 --| '__/ __| | | | | |/ _` |
 --| | | (__ _| | |_| | (_| |
 --|_|  \___(_)_|\__,_|\__,_|
 --
+
 
 -- Standard awesome library {{{
 local gears = require("gears")
@@ -30,8 +28,6 @@ local scratch = require("scratch")
   require("revelation")
 -- complément de keynav (control mouse with keyboard)
 -- local rodentbane = require("rodentbane")
--- menu xdg-menu
-xdg_menu = require("archmenu")
 -- }}}
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -102,25 +98,7 @@ local layouts =
     naughty.config.presets.low.width = naughty_width
     naughty.config.presets.normal.width = naughty_width
     naughty.config.presets.critical.width = naughty_width
-    -- Transparent notifications
-    naughty.config.presets.normal.opacity = 0.8
-    naughty.config.presets.low.opacity = 0.8
-    naughty.config.presets.critical.opacity = 0.8
--- presets
-    naughty.config.defaults.timeout = 5
-    naughty.config.defaults.screen = 1
-    naughty.config.defaults.position = "top_right"
-    naughty.config.defaults.margin = 8
-    naughty.config.defaults.gap = 1
-    naughty.config.defaults.ontop = true
-    naughty.config.defaults.font = "profont 8"
-    naughty.config.defaults.icon = nil
-    --naughty.config.defaults.icon_size = 256
-    naughty.config.defaults.fg = beautiful.fg_tooltip
-    naughty.config.defaults.bg = beautiful.bg_tooltip
-    naughty.config.defaults.border_color = beautiful.border_tooltip
-    naughty.config.defaults.border_width = 2
-    naughty.config.defaults.hover_timeout = nil
+
 -- }}}
 -- {{{ Wallpaper
 if beautiful.wallpaper then
@@ -147,10 +125,8 @@ myawesomemenu = {
 }
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "Applications", xdgmenu },
-                                    { "open terminal", terminal },
-                                  },
-                          theme = { width = 250, height = 20 }
+                                    { "open terminal", terminal }
+                                  }
                         })
 
 mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
@@ -189,10 +165,10 @@ cpuwidget:set_background_color("#494B4F")
 cpuwidget:set_color({ type = "linear", from = { 0, 0 }, to = { 0, 20 }, stops = { { 0, "#FF5656" }, { 0.5, "#88A175" }, { 1, "#AECF96" } }})
 --cpuwidget:set_color("#AECF96")
 --cpuwidget:set_gradient_colors({ "#FF5656", "#88A175", "#AECF96" })
+
 -- Register widget
 vicious.register(cpuwidget, vicious.widgets.cpu, "$1")
 vicious.register(tzswidget, vicious.widgets.thermal, " $1°", 20, { "coretemp.0", "core"} )
-cpuwidget:buttons( awful.button({ }, 1, function () awful.util.spawn(terminal .. " -e htop") end) )
 --}}}
 -- {{{ Reusable separator
 separator = wibox.widget.imagebox()
@@ -308,62 +284,35 @@ orgwidget:buttons(awful.util.table.join(
 -- Bref, c'est nul. Je préfère ma modif .*
   --awful.button({ }, 1, function () exec("emacsclient --eval '(org-agenda-list)'") end),
   --awful.button({ }, 3, function () exec("emacsclient --eval '(make-remember-frame)'") end)
-  awful.button({ }, 1, function () exec("urxvt -e vim /home/luke/org/home.org -s /home/luke/private/orgmode_aga") end),
-  awful.button({ }, 3, function () exec("urxvt -e vim /home/luke/org/home.org -s /home/luke/private/orgmode_agl") end)
+  awful.button({ }, 1, function () exec("urxvt -e vim /home/luke/test.org -s /home/luke/orgmode_aga") end),
+  awful.button({ }, 3, function () exec("urxvt -e vim /home/luke/test.org -s /home/luke/orgmode_agL") end)
 
 ))
 -- }}}
 -- {{{ Volume level
-    volicon = wibox.widget.imagebox()
-    volicon:set_image(beautiful.widget_vol)
+volicon = wibox.widget.imagebox()
+volicon:set_image(beautiful.widget_vol)
 -- Initialize widgets
-    volbar    = awful.widget.progressbar()
-    volwidget = wibox.widget.textbox()
+volbar    = awful.widget.progressbar()
+volwidget = wibox.widget.textbox()
 -- Progressbar properties
-    volbar:set_vertical(true):set_ticks(true)
-    volbar:set_height(12):set_width(8):set_ticks_size(2)
-    volbar:set_background_color(beautiful.fg_off_widget)
-    -- ancien gradient
-    --volbar:set_gradient_colors({ beautiful.fg_widget, beautiful.fg_center_widget, beautiful.fg_end_widget }) 
-    volbar:set_color({ type = "linear", from = { 0, 0 }, to = { 0, 20 }, stops = { { 0, "#FF5656" }, { 0.5, "#88A175" }, { 1, "#AECF96" } }})
+volbar:set_vertical(true):set_ticks(true)
+volbar:set_height(12):set_width(8):set_ticks_size(2)
+volbar:set_background_color(beautiful.fg_off_widget)
+--volbar:set_gradient_colors({ beautiful.fg_widget, beautiful.fg_center_widget, beautiful.fg_end_widget }) 
+volbar:set_color({ type = "linear", from = { 0, 0 }, to = { 0, 20 }, stops = { { 0, "#FF5656" }, { 0.5, "#88A175" }, { 1, "#AECF96" } }})
 -- Enable caching
-    vicious.cache(vicious.widgets.volume)
+vicious.cache(vicious.widgets.volume)
 -- Register widgets
-    vicious.register(volbar,    vicious.widgets.volume,  "$1",  2, "Master")
-    vicious.register(volwidget, vicious.widgets.volume, " $1%", 2, "Master")
+vicious.register(volbar,    vicious.widgets.volume,  "$1",  2, "Master")
+vicious.register(volwidget, vicious.widgets.volume, " $1%", 2, "Master")
 -- Register buttons
-----volbar.widget:buttons(awful.util.table.join(
--- clic sur la barre de volume
-volbar:buttons(awful.util.table.join(
--- 1:clic gauche  3:clic droit  2: clic roulette  4:whell push  5:whell pull (over lol)
-   awful.button({ }, 1, function () exec("urxvt -e alsamixer") end),
-   awful.button({ }, 2, function () exec("urxvt -e vimpc") end),
-   -- on/off et vice-versa
-   awful.button({ }, 3, function () exec("amixer sset Master toggle") end),
-       awful.button({ }, 4, function () exec("amixer -q set Master 2dB+", false) end),
-   awful.button({ }, 5, function () exec("amixer -q set Master 2dB-", false) end)
-)) 
--- clic sur l'icône
-volicon:buttons(awful.util.table.join(
--- 1:clic gauche  3:clic droit  2: clic roulette  4:whell push  5:whell pull (over lol)
-   awful.button({ }, 1, function () exec("urxvt -e alsamixer") end),
-   awful.button({ }, 2, function () exec("urxvt -e vimpc") end),
-   -- on/off et vice-versa
-   awful.button({ }, 3, function () exec("amixer sset Master toggle") end),
-       awful.button({ }, 4, function () exec("amixer -q set Master 2dB+", false) end),
-   awful.button({ }, 5, function () exec("amixer -q set Master 2dB-", false) end)
-)) 
--- clic sur le %
-volwidget:buttons(awful.util.table.join(
--- 1:clic gauche  3:clic droit  2: clic roulette  4:whell push  5:whell pull (over lol)
-   awful.button({ }, 1, function () exec("urxvt -e alsamixer") end),
-   awful.button({ }, 2, function () exec("urxvt -e vimpc") end),
-   -- on/off et vice-versa
-   awful.button({ }, 3, function () exec("amixer sset Master toggle") end),
-       awful.button({ }, 4, function () exec("amixer -q set Master 2dB+", false) end),
-   awful.button({ }, 5, function () exec("amixer -q set Master 2dB-", false) end)
-)) 
--- Register assigned buttons
+--volbar.widget:buttons(awful.util.table.join(
+--   awful.button({ }, 1, function () exec("urxvt -e alsamixer") end),
+--   awful.button({ }, 3, function () exec("amixer sset Master toggle") end),
+--   awful.button({ }, 4, function () exec("amixer -q set Master 2dB+", false) end),
+--   awful.button({ }, 5, function () exec("amixer -q set Master 2dB-", false) end)
+--)) -- Register assigned buttons
 --volwidget:buttons(volbar.widget:buttons())
 -- }}}
 --{{{ mpd
@@ -379,50 +328,8 @@ function (widget, args)
   end
 end, 10)
 --}}}
---{{{ Pacman
-pkgwidget = wibox.widget.textbox()
-pkgicon = wibox.widget.imagebox()
-pkgicon:set_image(beautiful.widget_pacman)
--- Don't show icon by default
-pkgicon.visible = false
-
--- Use a cronjob to update the packagelist http://bbs.archlinux.org/viewtopic.php?id=84115
-vicious.register(pkgwidget, vicious.widgets.pkg,
-function(widget, args)
-  -- Check wheter pacman db is locked. Don't use aweful.util.file_readable,
-  -- because the db.lck isn't readable at all.
-  local db_locked = os.execute("[[ -f /var/lib/pacman/db.lck ]] && exit 1 || exit 0")
-  -- Don't disturb me, unless enough updates are collect and pacman doesn't run
-  if args[1] < 8 or db_locked ~= 0 then
-    -- If you use powerpill, it is important to check wheter it runs!
-    pkgicon.visible = false
-    return ""
-  else
-    pkgicon.visible = true
-    return markup.urgent("<b>Updates</b> "..args[1]).." "
-  end
-  end, 180, "Arch")
-
-  pkgwidget:buttons( awful.button({ }, 1,
-    function ()
-      pkgwidget.visible, pkgicon.visible = false, false
-      -- URxvt specific
-      -- sans les «git»
-      --awful.util.spawn(terminal.." -title 'Yaourt Upgrade' -e zsh -c 'yaourt -Syu --aur'")
-      awful.util.spawn(terminal.." -title 'Yaourt Upgrade' -e zsh -c 'yaourt -Syu'")
-    end))
-  pkgicon:buttons( pkgwidget:buttons() )
 --}}}
--- {{{ Disk I/O
-local ioicon = wibox.widget.imagebox()
-ioicon:set_image(beautiful.widget_disk)
-ioicon.visible = true
-local iowidget = wibox.widget.textbox()
-vicious.register(iowidget, vicious.widgets.dio, "SDA ${sda read_mb}/${sda write_mb}MB", 7)
--- Register buttons
-iowidget:buttons( awful.button({ }, 1, function () awful.util.spawn(terminal .. " -e sudo iotop") end) )
--- }}}
---}}}
+
 --{{{ set wibox TOP
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -541,14 +448,6 @@ for s = 1, screen.count() do
     right_layout:add(separator)
     right_layout:add(orgicon)
     right_layout:add(orgwidget)
-    -- pacman
-    right_layout:add(separator)
-    right_layout:add(pkgicon)
-    right_layout:add(pkgwidget)
-    --io 
-    right_layout:add(separator)
-    right_layout:add(ioicon)
-    right_layout:add(iowidget)
     -- clock
     right_layout:add(separator)
     right_layout:add(mytextclock)
@@ -628,7 +527,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,      }, "z",
       function ()
         awful.menu.menu_keys.down = { "t", "Down", "Alt_L" }
-        local cmenu = awful.menu.clients({width = 250}, {keygrabber=true, coords={x=525, y=330}})
+        local cmenu = awful.menu.clients({width = 500}, {keygrabber=true, coords={x=525, y=330}})
       end),
 
     -- luke toggle wibox visibility
@@ -643,7 +542,7 @@ globalkeys = awful.util.table.join(
       function ()
         -- If you want to always position the menu on the same place set coordinates
         awful.menu.menu_keys.down = { "t", "Down", "Alt_L" }
-        local cmenu = awful.menu.clients({width=250}, { keygrabber=true, coords={x=525, y=330} })
+        local cmenu = awful.menu.clients({width=500}, { keygrabber=true, coords={x=525, y=330} })
       end),
 
     -- soft & fonctions
@@ -874,6 +773,5 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 --awful.util.spawn_with_shell("/home/luke/bin/mount_freebox") -- après le fstab (noauto) et avec un coup de notify-send
 awful.util.spawn_with_shell("/usr/bin/nitrogen --restore") -- ne marche pas (plus!) dans zenburn.lua
 --awful.util.spawn_with_shell("/usr/bin/mpd &") -- lance mpd depuis le serveur x (depuis ~/.xinitrc = erreur dans ~/.xerrors) 
---awful.util.spawn_with_shell("/usr/bin/keynav") -- lance keynav (mouseless with cursor. Ctrl , pour le lancer) 
-awful.util.spawn_with_shell("/usr/bin/oneko") --  little fun
+awful.util.spawn_with_shell("/usr/bin/keynav") -- lance keynav (mouseless with cursor. Ctrl , pour le lancer) 
 -- }}}
