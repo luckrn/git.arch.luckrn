@@ -1,0 +1,45 @@
+## colors {{{
+# init colors
+  # couleur BLEU
+  COLOR_active="\\033[1;34m"
+  # couleur JAUNE
+  COLOR_inactive="\\033[0;33m"
+  # couleur ip cyan
+  COLOR_IP="\\033[1;35m"
+  # couleur normal blanche
+  COLOR_NORMAL="\\033[0;39m"
+  # gray fond gray
+  COLOR_GRAY="\\033[1;30m"
+  # gray 2 fond black (test) 
+  COLOR_GRAY2="\\033[7;249m"
+    # usage colors: echo -e "$COLOR_active""en vert""$COLOR_inactive""ce qui suit en rouge" etc
+#}}}
+
+_done () {
+    echo " Done!"
+  }
+
+_kenavo () {
+    echo " Kenavo!"
+    exit 0
+  }
+
+_fun () {
+    JUST_A_SECOND=1
+    i=0
+    REPEATS=3
+
+    echo
+    echo "And now the fun really begins."
+    echo
+
+    sleep $JUST_A_SECOND # hey, wait a second!
+    while [ $i -lt $REPEATS ]
+      do
+        echo "-----Functions-----"
+        echo "-------are---------"
+        echo "-------fun---------"
+        echo
+        let "i+=1"
+      done
+  }

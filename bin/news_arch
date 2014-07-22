@@ -1,0 +1,4 @@
+#!/usr/bin/sh
+#rss de archlinux.fr
+echo -e "\\e[01;31m\t\t >> News Archlinux.fr << \\e[00m\n$(curl -s https://archlinux.fr/feed | sed '/<title\|<pubDate/!d;s/\t*//g;s/<\/*title>/ - /g;s/[0-9]*:.*/\\e[00m/g;s/&#8217;/'"'"'/g;s/&#8211;/-/g;/Archlinux.fr/d' | sed 'N;s/\n<pubDate>/\\033[1;34m/g;P;D;')"
+exit 0

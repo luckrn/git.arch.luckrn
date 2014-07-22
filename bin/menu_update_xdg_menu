@@ -1,0 +1,4 @@
+#!/usr/bin/bash
+# mettre à jour le menu des applications
+xdg_menu --format awesome --root-menu /etc/xdg/menus/arch-applications.menu >~/.config/awesome/archmenu.lua
+exit 0
