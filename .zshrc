@@ -1,4 +1,19 @@
-#
+" -----------------------------------------
+"           _              
+"   _______| |__  _ __ ___ 
+"  |_  / __| '_ \| '__/ __|
+" _ / /\__ \ | | | | | (__ 
+"(_)___|___/_| |_|_|  \___|
+"                          
+" -----------------------------------------
+" File:          ~/.zshrc
+"                ZSH version 5.0.5-1
+" -----------------------------------------
+" Last modified: mar. 22 juil. 2014 - 07:59
+" -----------------------------------------
+" Who/Where:     luke@viper2
+" -----------------------------------------
+"
 # Executes commands at the start of an interactive session.
 #
 # Authors:
@@ -11,29 +26,60 @@
     fi
 
 # Customize to your needs...
+
+## zmv : fonction on files {{{
+# charge le module zmv
+#autoload zmv
+# lowercase/uppercase all files/directories
+#zlow_VAR=$(zmv '(*)' '${(L)1}')
+#alias zlow=$zlow_VAR
+#}}}
+# variable
+VIMRUNTIME=/usr/bin
+# path
+PATH=$(cope_path):/home/luke/bin/:$PATH
+# source zsh-z-git (remplace j)
+source /usr/share/zsh/site-functions/_z
+# pyroscope path
+export PATH=$PATH:/home/luke/.lib/pyroscope/bin/
 # source custom colors: {{{
 # --------------------
     # le fichier manuel
-      eval $(dircolors -b ${HOME}/.dircolors)
+#eval $(dircolors -b ${HOME}/.dircolors)
+#      eval $(dircolors -b /etc/dir_colors)
 #}}}
 # editor vim  {{{
     export VISUAL="vim"
     export EDITOR="${VISUAL}"
 # }}}
 # Alias commande {{{
-    # go ~/.local/share/uzbl
-      alias lsu='cd ~/.local/share/uzbl'
-    # go ~/.local/share/uzbl/userstyles
-      alias lsuu='cd ~/.local/share/uzbl/userstyles'
-    # ip sur le net pour vpn
-      alias ipnet='w3m -dump http://checkip.dyndns.org'
+# uzbl script and userstyle
+alias lsu='cd ~/.local/share/uzbl'
+alias lsuu='cd ~/.local/share/uzbl/userstyles'
+alias lsus='cd ~/.local/share/uzbl/scripts'
+
+# torrent
+alias t='cd /media/sdb/torrent'
+alias tt='cd /media/sdb/torrent/_t411'
+# disques
+alias sdb='cd /media/sdb'
+alias sdc='cd /media/sdc'
+alias sdd='cd /media/sdd'
+    # gtick with aoos
+      alias metronome='aoss gtick'
+    # urxvtc pour lancer urxvtd (daemon) lancé par ~/.xinit
+      alias urxvt=urxvtc
+    # redirection des erreurs
+      alias NULL='> /dev/null 2>&1'
     # clear
       alias c='clear'
+    # ps2pdf : transforme les pdf en réduisant la taille
+      alias ps2pdf='ps2pdf -sPAPERSIZE=a4 -dOptimize=true -dEmbedAllFonts=true $1 $2'
     # ls
       alias lsd='lt -ld *(/)'
     # on/off
-      alias x='sudo umount -a 2>/dev/null; sudo poweroff'
-      alias rsync='rsync --progress -h -r'
+      alias x='sudo poweroff'
+      alias rsync='rsync --progress -av --stats'
     # console
       alias ZZ='exit'
       alias :q='exit'
@@ -41,12 +87,11 @@
     # pour awesome
       alias vimrclua='vim ~/.config/awesome/rc.lua'
     # Archlinux
-      alias s='yaourt -Syu'
+      alias s='yaourt -Syu -a'
 # alias xclip
       alias pbcopy='xclip -selection clipboard'       # copy to the clipboard, ctrl+c, ctrl+shift+c
       alias pbpaste='xclip -selection clipboard -o'   # paste from clipboard, ctrl+v, ctrl+shift+v
       alias pbselect='xclip -selection primary -o'    # paste from highlight, middle click, shift+insert
-      alias uzbl='uzbl-tabbed'
 # }}}
 # Color in Man pages {{{
 # Get color support for 'less'
@@ -55,17 +100,20 @@
 # Use colors for less, man, etc.
     [[ -f ~/.LESS_TERMCAP ]] && . ~/.LESS_TERMCAP
 # }}}
+
 # Alias executable {{{
-  alias -s m4v="cvlc"
-  alias -s mp4="cvlc"
-  alias -s avi="cvlc"
-  alias -s Avi="cvlc"
-  alias -s part="cvlc"
-  alias -s mkv="cvlc"
-  alias -s mpg="cvlc"
-  alias -s mov="cvlc"
-  alias -s wmv="cvlc"
-  alias -s flv="cvlc"
+  # coolreader
+  alias -s epub="cr3"
+  alias -s m4v="mplayer"
+  alias -s mp4="mplayer"
+  alias -s avi="mplayer"
+  alias -s Avi="mplayer"
+  alias -s part="mplayer"
+  alias -s mkv="mplayer"
+  alias -s mpg="mplayer"
+  alias -s mov="mplayer"
+  alias -s wmv="mplayer"
+  alias -s flv="mplayer"
   alias -s pdf="zathura"
   alias -s org="vim"
   alias -s doc="libreoffice"
@@ -93,6 +141,8 @@
   export fvf=/media/freebox/Vidéos/Family
   export fvc=/media/freebox/Vidéos/cc
   export f=/media/freebox
+  # pour supprimer couleur bleue dans vidéo en flash
+  export VDPAU_NVIDIA_NO_OVERLAY=1
 # }}}
 # vim Mon Précieux {{{
 # ---------------
@@ -136,11 +186,16 @@
 # taper un motif de recherche puis uparrow ou downarrow pour chercher l'occurence dans history
 # Ctrl U pour annuler
 # NB: doit être placé avant le plugin «zsh-syntax-highlighting» pour bénéficier de la couleur
-    source /usr/share/oh-my-zsh/plugins/history-substring-search/history-substring-search.zsh
+    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
     # pb rencontré: ne marchait pas car placé après «bindkey -v»
 # }}}
 
 # Functions
+# man dans vim
+function man {
+ /usr/bin/man $* | col -b | vim -R -c 'set ft=man nomod nolist' -
+}
     # extract any archive {{{
       extract_archive ()
         {
@@ -216,3 +271,10 @@
                fi  ;     
             }
 # }}}
+# calc fonction
+calc() 	{
+	echo "scale=3;$@" | bc -l
+		}
+
+# functions pour le bash
+source /home/luke/bin/fonctions
