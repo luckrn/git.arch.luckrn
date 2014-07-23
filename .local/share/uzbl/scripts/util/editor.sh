@@ -1,5 +1,6 @@
 #!/bin/sh
 # Editor selection
+# Last edit: mer. 23 juil. 2014 18:28:58 CEST 
 
 # if [ -z "$TERM" ]; then
 #     VTERM="xterm"
