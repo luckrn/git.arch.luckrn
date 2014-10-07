@@ -1,0 +1,27 @@
+" File: ~/.vimrc.before
+" Last modified:
+" touche clavier bépo
+source /home/luke/.vimrc.bepo
+" maps
+set backspace=2
+noremap <backspace> <C-b>   " page up = retour arrière
+noremap <Space> <C-f>       " page down = barre espace
+" folding
+set foldcolumn=4 "dans la marge, nombre de colonnes pour les replis (x=x replis)
+" fonction date sur le champ Last modified:
+" If buffer modified, update any 'Last modified: ' in the first 20 lines.
+" 'Last modified: mardi 07/10/2014 @ 18:54:33
+" Restores cursor and window position using save_cursor variable.
+function! LastModified()
+  if &modified
+    let save_cursor = getpos(".")
+    let n = min([20, line("$")])
+    keepjumps exe '1,' . n . 's#^\(.\{,10}Last modified: \).*#\1' .
+          \ strftime('%A %d/%m/%Y at %H:%M:%S') . '#e'
+    call histdel('search', -1)
+    call setpos('.', save_cursor)
+  endif
+endfun
+autocmd BufWritePre * call LastModified()
+" Police pour barre status Powerline
+let g:airline_powerline_fonts=1
