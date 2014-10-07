@@ -1,16 +1,19 @@
--- awesome v3.5.2 «The Fox»                  --
--- file: ~/.config/awesome/rc.lua            --
--- Last edit: sam. 28 déc. 2013 17:59:54 CET --
-
-  -------------------------
-  -- -+- luke on Viper2 -+-
-  -------------------------
---            _
--- _ __ ___  | |_   _  __ _
---| '__/ __| | | | | |/ _` |
---| | | (__ _| | |_| | (_| |
---|_|  \___(_)_|\__,_|\__,_|
+-- ----------------------------------------------
+--                   _
+--        _ __ ___  | |_   _  __ _
+--       | '__/ __| | | | | |/ _` |
+--       | | | (__ _| | |_| | (_| |
+--       |_|  \___(_)_|\__,_|\__,_|
 --
+-- ----------------------------------------------
+-- File:          ~/.config/awesome/rc.lua
+--                Awesome v3.5.5
+--                «Kansas City Shuffle»
+-- ----------------------------------------------
+-- Last modified: mardi 07/10/2014 at 19:06:09
+-- ----------------------------------------------
+-- Who/Where:     luke@viper2
+-- ----------------------------------------------
 
 -- Standard awesome library {{{
 local gears = require("gears")
@@ -32,6 +35,10 @@ local scratch = require("scratch")
 -- local rodentbane = require("rodentbane")
 -- menu xdg-menu
 xdg_menu = require("archmenu")
+-- hints
+require("hints")
+package.path = package.path .. ';/home/luke/powerline/powerline/bindings/awesome/?.lua'
+require('powerline')
 -- }}}
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -61,6 +68,8 @@ end
 -- Themes define colours, icons, and wallpapers
 --beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 beautiful.init("/home/luke/.config/awesome/zenburn.lua")
+-- hints AFTER beautiful.init
+hints.init()
 
 -- This is used later as the default terminal and editor to run.
   terminal = "urxvt"
@@ -70,14 +79,12 @@ beautiful.init("/home/luke/.config/awesome/zenburn.lua")
   local home   = os.getenv("HOME")
   local exec   = awful.util.spawn
   local sexec  = awful.util.spawn_with_shell
-
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
 -- If you do not like this or do not have such a key,
 -- I suggest you to remap Mod4 to another key using xmodmap or other tools.
 -- However, you can use another modifier like Mod1, but it may interact with others.
 modkey = "Mod1"
-
 -- Table of layouts to cover with awful.layout.inc, order matters.
 local layouts =
 {
@@ -94,11 +101,10 @@ local layouts =
     awful.layout.suit.magnifier,        -- 5
     awful.layout.suit.floating          -- 6 sans la virgule à la fin, bordel!
 }
-
 -- logs par Dbus, naughty
 -- found here : http://awesome.naquadah.org/wiki/Dbus,_naughty_and_logs
 -- set width for naughty windows manually
-    naughty_width = 800 -- in pixels
+    naughty_width = 500 -- in pixels
     naughty.config.presets.low.width = naughty_width
     naughty.config.presets.normal.width = naughty_width
     naughty.config.presets.critical.width = naughty_width
@@ -149,6 +155,8 @@ myawesomemenu = {
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
                                     { "Applications", xdgmenu },
                                     { "open terminal", terminal },
+                                    { "nethogs", terminal .. " -e sudo nethogs" },
+                                    { "iftop", terminal .. " -e sudo iftop" },
                                   },
                           theme = { width = 250, height = 20 }
                         })
@@ -168,7 +176,6 @@ awful.menu.menu_keys = { up    = { "s", "Up" },
                          close = { "q", "Escape" },
                        }
 -- end original menu }}}
-
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
@@ -295,7 +302,8 @@ local orgmode = {
     today  = '<span color="'..beautiful.fg_normal..'">',
     soon   = '<span color="'..beautiful.fg_widget..'">',
     future = '<span color="'..beautiful.fg_netup_widget..'">'
-}} -- Register widget
+}}
+-- Register widget
 vicious.register(orgwidget, vicious.widgets.org,
   orgmode.color.past..'$1</span>-'..orgmode.color.today .. '$2</span>-' ..
   orgmode.color.soon..'$3</span>-'..orgmode.color.future.. '$4</span>', 601,
@@ -308,29 +316,29 @@ orgwidget:buttons(awful.util.table.join(
 -- Bref, c'est nul. Je préfère ma modif .*
   --awful.button({ }, 1, function () exec("emacsclient --eval '(org-agenda-list)'") end),
   --awful.button({ }, 3, function () exec("emacsclient --eval '(make-remember-frame)'") end)
-  awful.button({ }, 1, function () exec("urxvt -e vim /home/luke/org/home.org -s /home/luke/private/orgmode_aga") end),
-  awful.button({ }, 3, function () exec("urxvt -e vim /home/luke/org/home.org -s /home/luke/private/orgmode_agl") end)
+  awful.button({ }, 1, function () exec("urxvt -e vim /home/luke/test.org -s /home/luke/orgmode_aga") end),
+  awful.button({ }, 3, function () exec("urxvt -e vim /home/luke/test.org -s /home/luke/orgmode_agL") end)
 
 ))
 -- }}}
 -- {{{ Volume level
-    volicon = wibox.widget.imagebox()
-    volicon:set_image(beautiful.widget_vol)
+volicon = wibox.widget.imagebox()
+volicon:set_image(beautiful.widget_vol)
 -- Initialize widgets
-    volbar    = awful.widget.progressbar()
-    volwidget = wibox.widget.textbox()
+volbar    = awful.widget.progressbar()
+volwidget = wibox.widget.textbox()
 -- Progressbar properties
-    volbar:set_vertical(true):set_ticks(true)
-    volbar:set_height(12):set_width(8):set_ticks_size(2)
-    volbar:set_background_color(beautiful.fg_off_widget)
+volbar:set_vertical(true):set_ticks(true)
+volbar:set_height(12):set_width(8):set_ticks_size(2)
+volbar:set_background_color(beautiful.fg_off_widget)
     -- ancien gradient
     --volbar:set_gradient_colors({ beautiful.fg_widget, beautiful.fg_center_widget, beautiful.fg_end_widget }) 
     volbar:set_color({ type = "linear", from = { 0, 0 }, to = { 0, 20 }, stops = { { 0, "#FF5656" }, { 0.5, "#88A175" }, { 1, "#AECF96" } }})
 -- Enable caching
-    vicious.cache(vicious.widgets.volume)
+vicious.cache(vicious.widgets.volume)
 -- Register widgets
-    vicious.register(volbar,    vicious.widgets.volume,  "$1",  2, "Master")
-    vicious.register(volwidget, vicious.widgets.volume, " $1%", 2, "Master")
+vicious.register(volbar,    vicious.widgets.volume,  "$1",  2, "Master")
+vicious.register(volwidget, vicious.widgets.volume, " $1%", 2, "Master")
 -- Register buttons
 ----volbar.widget:buttons(awful.util.table.join(
 -- clic sur la barre de volume
@@ -404,13 +412,13 @@ function(widget, args)
   end, 180, "Arch")
 
   pkgwidget:buttons( awful.button({ }, 1,
-    function ()
-      pkgwidget.visible, pkgicon.visible = false, false
-      -- URxvt specific
-      -- sans les «git»
-      --awful.util.spawn(terminal.." -title 'Yaourt Upgrade' -e zsh -c 'yaourt -Syu --aur'")
-      awful.util.spawn(terminal.." -title 'Yaourt Upgrade' -e zsh -c 'yaourt -Syu'")
-    end))
+	function ()
+	  pkgwidget.visible, pkgicon.visible = false, false
+	  -- URxvt specific
+	  -- sans les «git»
+	  --awful.util.spawn(terminal.." -title 'Yaourt Upgrade' -e zsh -c 'yaourt -Syu --aur'")
+	  awful.util.spawn(terminal.." -title 'Yaourt Upgrade' -e zsh -c 'yaourt -Syu'")
+	end))
   pkgicon:buttons( pkgwidget:buttons() )
 --}}}
 -- {{{ Disk I/O
@@ -494,8 +502,8 @@ for s = 1, screen.count() do
     mywibox[s] = awful.wibox({ position = "top", screen = s, height = 12, 
                                fg = beautiful.fg_normal,
                                bg = beautiful.bg_normal,
-                               border_color = beautiful.border_wibox,
-                               border_width = 1
+                               --border_color = beautiful.border_wibox,
+                               border_width = 0
                                })
     --}}}
     -- {{{Widgets that are aligned to the left
@@ -552,6 +560,7 @@ for s = 1, screen.count() do
     -- clock
     right_layout:add(separator)
     right_layout:add(mytextclock)
+    --right_layout:add(powerline_widget)
 --    right_layout:add(mylayoutbox[s])
     -- }}}
     -- Now bring it all together (with the tasklist in the middle)
@@ -562,7 +571,6 @@ for s = 1, screen.count() do
 
     mywibox[s]:set_widget(layout)
 end
---}}}
 --}}}
 -- {{{ Mouse bindings
 root.buttons(awful.util.table.join(
@@ -579,6 +587,8 @@ globalkeys = awful.util.table.join(
 
     -- luke revelation, fenêtre en mosaïque
     awful.key({modkey}, "e",  revelation),
+    -- hints {{{
+    awful.key({modkey}, "a", function () hints.focus() end),
 
     awful.key({ modkey,           }, "t",
         function ()
@@ -591,7 +601,7 @@ globalkeys = awful.util.table.join(
             if client.focus then client.focus:raise() end
         end),
     awful.key({ modkey,           }, "w", function () mymainmenu:show() end),
-
+	--}}}
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "t", function () awful.client.swap.byidx(  1)    end),
     awful.key({ modkey, "Shift"   }, "s", function () awful.client.swap.byidx( -1)    end),
@@ -605,7 +615,7 @@ globalkeys = awful.util.table.join(
                 client.focus:raise()
             end
         end),
-
+		--}}}
     -- {{{{ Add-on luke
     -- Rodentbane : control mouse keyboard
 --    awful.key({ modkey, }, ".", function ()
@@ -614,7 +624,8 @@ globalkeys = awful.util.table.join(
         
     -- dmenu
     awful.key({ modkey, "Alt"},            "F2",     function ()
-    awful.util.spawn("dmenu_run -i -p 'Run command:' -fn '-*-profont-*-*-normal-*-11-*-*-*-*-*-iso8859-*' -nb '" .. 
+    --awful.util.spawn("dmenu_run -i -p 'Run command:' -fn '-*-profont-*-*-normal-*-11-*-*-*-*-*-iso8859-*' -nb '" .. 
+    awful.util.spawn("dmenu_run -i -p 'Run command:' -fn 'Inconsolata-11' -nb '" .. 
         beautiful.bg_normal .. "' -nf '" .. beautiful.fg_normal ..
         "' -sb '" .. beautiful.bg_focus .. 
         "' -sf '" .. beautiful.fg_focus .. "'")
@@ -643,7 +654,7 @@ globalkeys = awful.util.table.join(
       function ()
         -- If you want to always position the menu on the same place set coordinates
         awful.menu.menu_keys.down = { "t", "Down", "Alt_L" }
-        local cmenu = awful.menu.clients({width=250}, { keygrabber=true, coords={x=525, y=330} })
+        local cmenu = awful.menu.clients({width=500}, { keygrabber=true, coords={x=525, y=330} })
       end),
 
     -- soft & fonctions
@@ -670,8 +681,6 @@ globalkeys = awful.util.table.join(
     -- luke lock the screen
       awful.key({ modkey, "Control" }, "l", function () awful.util.spawn(lock) end),
       --}}}
-
-
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
     awful.key({ modkey, "Control" }, "h", awesome.restart),
@@ -690,6 +699,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
 
     awful.key({ modkey, "Control" }, "n", awful.client.restore), -- minimize windows
+	--}}}
 
     -- Prompt
     -- Run tout court...
@@ -711,6 +721,7 @@ globalkeys = awful.util.table.join(
                   awful.util.eval, nil,
                   awful.util.getdir("cache") .. "/history_eval")
               end),
+
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end)
 )
@@ -790,6 +801,7 @@ awful.rules.rules = {
                      border_color = beautiful.border_normal,
                      focus = awful.client.focus.filter,
                      keys = clientkeys,
+					 size_hints_honor = false,
                      buttons = clientbuttons } },
     --{ rule = { class = "vlc" },
     --  properties = { floating = true } },
@@ -874,6 +886,17 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 --awful.util.spawn_with_shell("/home/luke/bin/mount_freebox") -- après le fstab (noauto) et avec un coup de notify-send
 awful.util.spawn_with_shell("/usr/bin/nitrogen --restore") -- ne marche pas (plus!) dans zenburn.lua
 --awful.util.spawn_with_shell("/usr/bin/mpd &") -- lance mpd depuis le serveur x (depuis ~/.xinitrc = erreur dans ~/.xerrors) 
---awful.util.spawn_with_shell("/usr/bin/keynav") -- lance keynav (mouseless with cursor. Ctrl , pour le lancer) 
-awful.util.spawn_with_shell("/usr/bin/oneko") --  little fun
+awful.util.spawn_with_shell("/usr/bin/keynav") -- lance keynav (mouseless with cursor. Ctrl , pour le lancer) 
+
+--awful.util.spawn_with_shell("/usr/bin/oneko") --  little fun -- little chiant à force
+-- }}}
+-- {{{ Welcome Message
+print("[awesome] Send welcome message")
+
+naughty.notify{
+	icon="/usr/share/icons/gnome/48x48/status/trophy-silver.png",
+	title = "Awesome "..awesome.version.." started!",
+	  text  = string.format("Welcome %s. Your host is %s.\nIt is %s",
+		os.getenv("USER"), awful.util.pread("hostname"):match("[^\n]*"), os.date()),
+		  timeout = 7 }
 -- }}}
