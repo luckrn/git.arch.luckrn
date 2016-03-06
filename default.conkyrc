@@ -1,0 +1,29 @@
+background yes
+double_buffer yes
+own_window_class conky
+own_window yes
+own_window_type desktop
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+own_window_argb_visual yes
+draw_borders no
+draw_graph_borders no
+draw_shades yes
+gap_x 0
+gap_y 2
+alignment bottom_middle
+update_interval 1
+#default_color  ffffff
+default_color  cccccc
+#own_window_colour 000000
+own_window_colour 1f1f1f
+use_xft yes
+xftfont Terminus:size=8
+override_utf8_locale yes
+use_spacer none
+minimum_size 1920 0
+TEXT
+♠ ${loadgraph 11,160 506070 dca3a3 scale -t}${color}${font} ${loadavg 1}  \
+R/W ${diskiograph 11,160 506070 dca3a3 scale -t} ${color}${font} \
+Cpu: ${color dca3a3}${font terminus:size=8}${cpugraph 11,160 506070 dca3a3 scale -t}${color}${font} \
+Ram: ${color dca3a3}${font terminus:size=8}${memgraph 11,160 506070 dca3a3 scale -t}${color}${font}  \
+${color} Network: ${color 82BA00} ${upspeedgraph enp2s0 11,250 506070 dca3a3 scale -t} Up :${color} ${color dca3a3}${upspeed enp2s0} kb/s${color}  ${color 82BA00}Down :${color} ${color dca3a3}${downspeed } kb/s  ${downspeedgraph enp2s0 11,250 506070 dca3a3 scale -t} ${color} ${color 82BA00}Total :${color} ${color dca3a3}${totaldown enp2s0}${color}
