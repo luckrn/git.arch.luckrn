@@ -282,6 +282,7 @@ arrl_ld = separators.arrow_left("alpha", beautiful.bg_focus)
 
 -- Create a wibox for each screen and add it
 mywibox = {}
+mystatusbar = {}
 mypromptbox = {}
 mylayoutbox = {}
 mytaglist = {}
@@ -406,6 +407,9 @@ for s = 1, screen.count() do
     layout:set_middle(mytasklist[s])
     layout:set_right(right_layout)
     mywibox[s]:set_widget(layout)
+
+
+mystatusbar = awful.wibox({ position = "bottom", screen = 1, ontop = false, width = 1, height = 18 })
 
 end
 -- }}}
