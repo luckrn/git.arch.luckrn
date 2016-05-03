@@ -1,0 +1,43 @@
+background yes
+double_buffer yes
+own_window_class conky_luke
+own_window yes
+own_window_type override
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+own_window_argb_visual yes
+draw_borders no
+draw_graph_borders no
+draw_shades no
+gap_x 0
+gap_y 2
+alignment bottom_middle
+update_interval 1
+#default_color  ffffff
+#default_color  cccccc
+default_color  737171
+color1 a6a3a3
+#own_window_colour 000000
+#own_window_colour 1f1f1f
+own_window_colour 333232
+use_xft yes
+xftfont Terminus:size=8
+override_utf8_locale yes
+use_spacer none
+minimum_size 1920 0
+
+TEXT
+${goto 8} \
+Uptime${offset 5}${color1}$uptime_short${offset 16} \
+${color}♠ ${loadgraph 11,40 506070 dca3a3 -t}${color}${font} ${loadavg 1}  \
+R/W ${diskiograph 11,40 506070 dca3a3 scale -t} ${color}${font} \
+Cpu [${cpu cpu0}%] ${color dca3a3}${font terminus:size=8}${cpugraph 11,160 506070 dca3a3 scale -t}${color}${font} \
+Ram [${memperc}%] ${color dca3a3}${font terminus:size=8}${memgraph 11,40 506070 dca3a3 scale -t}${color}${font}  \
+${color} Network: ${color 82BA00} ${upspeedgraph enp2s0 11,200 506070 dca3a3 scale -t} Up :${goto 935}${color} ${color dca3a3}${upspeed enp2s0} ${color}  ${color 82BA00}${goto 990}Down :${goto 1035}${color} ${color dca3a3}${downspeed enp2s0} ${downspeedgraph enp2s0 11,200 506070 dca3a3 scale -t} ${color} ${color 82BA00}${goto 1300}Total :${color} ${color dca3a3}${totaldown enp2s0}${color} \
+${offset 10}WanIP ${execpi 30 /home/luke/bin/wanip.sh} \
+${offset 5}Proc ${color1}${processes}${offset 5}${color}Runn.${color1}${running_processes}】\
+${offset 10}${color}Météo Quimper ${color1}${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ LFRQ temperature}°C \
+${offset 5}${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ LFRQ cloud_cover} \
+${offset 5}${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ LFRQ wind_speed}km/h \
+${offset 2}${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ LFRQ wind_dir} \
+${offset 5}${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ LFRQ precipitation} \
+

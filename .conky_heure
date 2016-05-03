@@ -1,0 +1,49 @@
+use_xft yes
+xftfont 123:size=5
+xftalpha 0.1
+update_interval 1
+total_run_times 0
+
+own_window yes
+#own_window_type yes
+own_window_type override
+own_window_transparent no
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+own_window_colour 000000
+own_window_argb_visual yes
+own_window_argb_value 0
+
+double_buffer yes
+#minimum_size 250 5
+#maximum_width 500
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders no
+#default_color white
+default_color black
+default_shade_color red
+default_outline_color gray
+alignment top_right
+gap_x 0
+gap_y 10
+no_buffers yes
+uppercase no
+cpu_avg_samples 2
+net_avg_samples 1
+override_utf8_locale Yes
+use_spacer yes
+
+
+minimum_size 0 0
+TEXT
+#${voffset 10}${color EAEAEA}${font Films:size=130}${time %H:%M}${font}${voffset -94}${offset 55}${color FFA300}${font Tall Films:size=45}${time %d} ${voffset -10}${offset 2}${color EAEAEA}${font Tall Films:size=22}${time  %B} ${time %Y}${font}${voffset 19}${font Tall Films:size=50}${offset -130}${time %A}${font}
+#${voffset 1}${offset 12}${font Ubuntu:pixelsize=12}${color FFA300}HD ${offset 9}$color${fs_free /} / ${fs_size /}${offset 15}${color FFA300}RAM ${offset 9}$color$mem / $memmax${offset 10}${color FFA300}CPU ${offset 2}$color${cpu cpu0}%
+
+
+
+${voffset 10}${color 1f1f1f}${font Ubuntu:size=140}${time %H:%M}
+
+
+
+
