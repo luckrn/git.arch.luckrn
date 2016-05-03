@@ -1,200 +1,205 @@
-! anrxc X application resource database
-! ~/.Xdefaults
-! ven. 25 mai 2012 19:26:59 CEST
-!       _
-!__   _(_)_ __   ___ _ __
-!\ \ / / | '_ \ / _ \ '__|
-! \ V /| | |_) |  __/ |
-!  \_/ |_| .__/ \___|_|
-!        |_|
+!--------------------------------------------
+!  __  __   _       __             _ _
+!  \ \/ /__| | ___ / _| __ _ _   _| | |_ ___
+!   \  // _` |/ _ \ |_ / _` | | | | | __/ __|
+! _ /  \ (_| |  __/  _| (_| | |_| | | |_\__ \
+!(_)_/\_\__,_|\___|_|  \__,_|\__,_|_|\__|___/
 !
-!{{{ Xft
-! fait dans ~/.config/fontconfig/fonts.conf
-Xft.dpi:        96
- Xft.antialias:  0
-Xft.hinting:    1
-Xft.hintstyle:  hintfull
-Xft.rgba:       rgb
-!}}}
-!{{{ Emacs
-Emacs.FontBackend: xft
-Emacs.font: profont-8
-Emacs*font: fontset-normal
-!}}}
-!{{{ URxvt
+!.Xdefaults
+!Last modified: mercredi 27/04/2016 at 20:51:53
+!--------------------------------------------
 !
+! URXVT
 ! General
-URxvt.buffered:          false
-URxvt.termName:           rxvt-unicode
-URxvt.loginShell:         true
-URxvt.scrollBar:         false
-URxvt.secondaryScroll:    true
-URxvt.saveLines:         65535
-URxvt.cursorBlink:       false
-URxvt.cursorUnderline:   true
-URxvt.urgentOnBell:       true
-URxvt.override-redirect:false
-URxvt.borderLess:       false
-URxvt.internalBorder:       0
-URxvt.externalBorder:       0
+! transparency http://ctkarch.org/documentation/tutorials/tuto.php?page=urxvt-transpa.xml
+urxvt.depth: 32
+!urxvt.background: [85]#1f1f1f
+urxvt.background: [90]#000000
+! comment for transparency
+!urxvt.tintColor
+!urxvt.inheritPixmap
 
+
+!space between text and border
+urxvt.internalBorder: 8
+urxvt*termName:           rxvt-unicode-256color
+urxvt*loginShell:         true
+! cacher scrollbar (ascenseur)
+URxvt.scrollBar:        false
+! do not scroll with output
+URxvt*scrollTtyOutput: false
+! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
+URxvt*scrollWithBuffer: true
+! scroll back to the bottom on keypress
+URxvt*scrollTtyKeypress: true
+!Scrollback buffer in secondary screen (like 'less' for example) - next 2 lines : -----++--
+URxvt.secondaryScreen: 1
+URxvt.secondaryScroll: 0
+! better with mouse to scrolling in less
+! need in AUR: rxvt-unicode-better-wheel-scroling
+URxvt.secondaryWheel: 1
+! end Scrollback buffer----------------------------------------------------------------++--/
+! reduc to perform
+!urxvt*saveLines:         65535
+urxvt*saveLines:         12000
+urxvt*cursorBlink:       false
+!urxvt*cursorUnderline:   true
+urxvt*urgentOnBell:       true
+!urxvt*override-redirect:false
+!urxvt*borderLess:       false
+URxvt*internalBorder:       0
+URxvt*externalBorder:       0
 ! Extensions
-URxvt.perl-lib:        /usr/lib/URxvt/perl/
-URxvt.perl-ext-common: default,matcher,searchable-scrollback,url-picker,tabbedex
+!urxvt*perl-lib:        /usr/lib/urxvt/perl
 
-! perl url-picker
-    URxvt.url-picker.launcher:  urxvt-to-uzbl.sh
-    URxvt.keysym.M-g:     perl:url-picker
-! END perl url-picker
+! Yankable URLs (no mouse)____________________++_
+URxvt*perl-ext: default,url-select,tabbedex
+! paquet urxvt-perls (click and yank url)
+URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.url-select.launcher: /usr/bin/qutebrowser
+URxvt.url-select.underline: true
+! man urxvt-perls
+! Alt+U: enter selection mode. Last url selected. Repeat Alt+U to select next upward url.
+! k Select next upward url
+! j Select next downward url
+! Return Open selected url
+! o Open selected url in browser without quitting selection mode
+! y Yank sedected url and quit selection mode
+! Esc Cancel url selection mode
+! --------------------------------------------++--
 
-! yankable urls
-! Alt+u: enter selection mode
-! K select next upward URL
-! J select next downward URL
-! Return: Open selected URL in browser and quit selection mode
-! O: open URL witout quit selection mode
-! Y: yank URL and quit selection mode
-! Esc: Cancel URL selection mode
-URxvt.underlineURLs:    true
-URxvt.colorUL: #86a2be
+!!
 ! Catch ugly URLs
-URxvt.cutchars:        '"'()*<>[]{|}
-!
+urxvt*cutchars:        '"'()*<>[]{|}
 ! Appearance
+! font powerline pour vim : paquet: powerline-fonts-git
+urxvt*font:     -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-2,xft:Inconsolata\ for\ Powerline:pixelsize=12
+urxvt*boldFont: -xos4-terminus-bold-*-*-*-12-*-*-*-*-*-iso8859-2,xft:Inconsolata\ for\ Powerline:pixelsize=12
+!urxvt*font:xft:Terminus:pixelsize=12,xft:Inconsolata\ for\ Powerline:pixelsize=10
 !
-! PROFONT ! luke, finalement pour profont en passant par 'xfontsel' :
-URxvt.font: -*-profont-*-*-normal-*-12-*-*-*-*-*-iso8859-*
-! pas de 'bold' parce que pas lisible, tant pis.
-URxvt.boldFont: -*-profont-*-*-normal-*-12-*-*-*-*-*-iso8859-*
 !
-! ANONYMOUS FONT
-!URxvt.font: xft:anonymous Pro-Powerline:size=9
-!URxvt.boldFont: xft:anonymous Pro-Powerline:size=9
-!URxvt.font: xft:DejaVuSansMono:size=8
-!URxvt.boldFont: xft:DejaVuSansMonoBold:size=8
-!URxvt.font: xft:Terminus:size=8
-!URxvt.boldFont: xft:Terminus:size=8
-!URxvt.font: xft:Terminus:size=10
-!URxvt.boldFont: xft:Terminus:size=10
-!
-! mensch for powerline
-! URxvt.font: xft:Mensch\ for\ Powerline:size=9
-! URxvt.boldFont: xft:Mensch\ for\ Powerline:bold:size=9
 !
 ! Cursor
-!URxvt.cursorColor: #DCDCCC
-URxvt.cursorColor:          darkorange1
+!urxvt*cursorColor: #DCDCCC
+!!urxvt*cursorColor: yellow
+urxvt.cursorBlink: 1
+urxvt.cursorUnderline: 1
 ! URLs
-!URxvt..colorUL:    #ffffff
-!
-! 
+!colorful man pages
+! IT > ITalic
+urxvt*.colorIT:    #87af5f
+! BD > BolD
+urxvt*.colorBD:    #d7d7d7
+! UL > UnderLine
+urxvt*.colorUL:    #87afd7
+! Pseudo Transparency
+!urxvt*shading:    15
+!urxvt*transparent:true
+!urxvt.tintColor: white
+
 ! Zenburn color-scheme
-! background like vim zenburn dark
-!URxvt.background:  #1c1c1c !see line 124 (vraie transparence)
-URxvt.foreground:  #dcdccc
+!urxvt*background:  #3f3f3f
+!urxvt*background:  #1f1f1f
+urxvt*foreground:  #dcdccc
 ! black + red
-URxvt.color0:     #3f3f3f
-!URxvt.color0:      #1E2320
-URxvt.color1:      #705050
+!urxvt*color0:     #3f3f3f
+urxvt*color0:      #1E2320
+urxvt*color1:      #705050
 ! green + yellow
-URxvt.color2:      #60b48a
-URxvt.color3:      #dfaf8f
+urxvt*color2:      #60b48a
+urxvt*color3:      #dfaf8f
 ! blue + purple
-URxvt.color4:      #506070
-URxvt.color5:      #dc8cc3
+urxvt*color4:      #506070
+urxvt*color5:      #dc8cc3
 ! cyan + white
-URxvt.color6:      #8cd0d3
-URxvt.color7:      #dcdccc
+urxvt*color6:      #8cd0d3
+urxvt*color7:      #dcdccc
 ! bright-black + bright-red
-URxvt.color8:      #709080
-URxvt.color9:      #dca3a3
+urxvt*color8:      #709080
+urxvt*color9:      #dca3a3
 ! bright-green + bright-yellow
-URxvt.color10:     #c3bf9f
-URxvt.color11:     #f0dfaf
+urxvt*color10:     #c3bf9f
+urxvt*color11:     #f0dfaf
 ! bright-blue + bright-purple
-URxvt.color12:     #94bff3
-URxvt.color13:     #ec93d3
+urxvt*color12:     #94bff3
+urxvt*color13:     #ec93d3
 ! bright-cyan + bright-white
-URxvt.color14:     #93e0e3
-URxvt.color15:     #ffffff
+urxvt*color14:     #93e0e3
+urxvt*color15:     #ffffff
 
 
-/* True transparency uniquement sous compiz par exemple (compositeur de fenetre)*/
-URxvt.depth: 32
-URxvt.background: [94]#000000 
-/* Fausse transparence */
-!URxvt.inheritPixmap:    true
-!URxvt.shading:          15
-! ! Pseudo Transparency
-!URxvt.transparent:      true
-
-/* URLs clickable */
-!URxvt.urlLauncher:      /usr/bin/dwb
-URxvt.urlLauncher:     urxvt-to-uzbl.sh
-URxvt.matcher.button:   1
-
-/* Color Tab */
-URxvt.tabbed.tabbar-fg: 2
-URxvt.tabbed.tabbar-bg: :
-URxvt.tabbed.tab-fg:    3
-URxvt.tabbed.tab-bg:    0
 
 
+
+
+
+
+!{{{ XFONTSEL
+XFontSel*menu*showUnselectable:       false
+XFontSel*sampleText.background:      TEXTBG
+XFontSel*MenuButton.shadowWidth:          0
+XFontsel*Toggle*ToggleStyle:          check
+XFontsel*MenuButton*Justify:           left
+XFontsel*MenuButton*MenuButtonStyle: select
+xfontsel*Font: -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-2
+xfontsel.pane.commandBox.quitButton.background:           #777777
+xfontsel.pane.commandBox.quitButton.foreground:           snow
+xfontsel.pane.commandBox.ownButton.background:            orange3
+xfontsel.pane.commandBox.ownButton.foreground:            snow
+xfontsel.pane.commandBox.countLabel.background:           snow
+xfontsel.pane.viewPort.sampleText.background:             #777777
+xfontsel.pane.viewPort.sampleText.foreground:             snow
+xfontsel.pane.fieldBox.field0.background:  #777777
+xfontsel.pane.fieldBox.field0.foreground:  snow
+xfontsel.pane.fieldBox.field1.background:  #777777
+xfontsel.pane.fieldBox.field1.foreground:  snow
+xfontsel.pane.fieldBox.field2.background:  #777777
+xfontsel.pane.fieldBox.field2.foreground:  snow
+xfontsel.pane.fieldBox.field3.background:  #777777
+xfontsel.pane.fieldBox.field3.foreground:  snow
+xfontsel.pane.fieldBox.field4.background:  #777777
+xfontsel.pane.fieldBox.field4.foreground:  snow
+xfontsel.pane.fieldBox.field5.background:  #777777
+xfontsel.pane.fieldBox.field5.foreground:  snow
+xfontsel.pane.fieldBox.field6.background:  #777777
+xfontsel.pane.fieldBox.field6.foreground:  snow
+xfontsel.pane.fieldBox.field7.background:  #777777
+xfontsel.pane.fieldBox.field7.foreground:  snow
+xfontsel.pane.fieldBox.field8.background:  #777777
+xfontsel.pane.fieldBox.field8.foreground:  snow
+xfontsel.pane.fieldBox.field9.background:  #777777
+xfontsel.pane.fieldBox.field9.foreground:  snow
+xfontsel.pane.fieldBox.field10.background: #777777
+xfontsel.pane.fieldBox.field10.foreground: snow
+xfontsel.pane.fieldBox.field11.background: #777777
+xfontsel.pane.fieldBox.field11.foreground: snow
+xfontsel.pane.fieldBox.field12.background: #777777
+xfontsel.pane.fieldBox.field12.foreground: snow
+xfontsel.pane.fieldBox.field13.background: #777777
+xfontsel.pane.fieldBox.field13.foreground: snow
+xfontsel.pane.fieldBox*foreground:         #000000
+xfontsel.pane.fieldBox.MenuButton.borderWidth:   1
+xfontsel.pane.fieldBox.MenuButton.internalHeight:1
+xfontsel.pane.fieldBox.MenuButton.internalWidth: 2
+xfontsel.pane.fieldBox.MenuButton.shapeStyle:    rectangle
 !}}}
-! !{{{ XTERM 
-xterm*internalBorder:        0
-xterm*loginShell:         true
-xterm*scrollBar:         false
-xterm*cursorBlink:       false
-!xterm*geometry:         80x26
-xterm*saveLines:         65535
-xterm*dynamicColors:        on
-xterm*highlightSelection: true
-! Appearance
-xterm*utf8:            2
-xterm*eightBitInput:   true
-xterm*metaSendsEscape: true
-xterm*cursorColor: #DCDCCC
-! Zenburn
-xterm*background:  #3f3f3f
-xterm*foreground:  #dcdccc
-xterm*color0:      #1E2320
-xterm*color1:      #705050
-xterm*color2:      #60b48a
-xterm*color3:      #dfaf8f
-xterm*color4:      #506070
-xterm*color5:      #dc8cc3
-xterm*color6:      #8cd0d3
-xterm*color7:      #dcdccc
-xterm*color8:      #709080
-xterm*color9:      #dca3a3
-xterm*color10:     #c3bf9f
-xterm*color11:     #f0dfaf
-xterm*color12:     #94bff3
-xterm*color13:     #ec93d3
-xterm*color14:     #93e0e3
-xterm*color15:     #ffffff
-!}}}
-!{{{ XPDF
-! xpdf*foreground:     black
-! xpdf*background:     white
-xpdf*foreground:     #222222
-xpdf*background:     #dcdccc
-xpdf*paperColor:    #bbbbbb
-xpdf*enableFreeType:    true
-xpdf*antialias:         true
-!xpdf*urlCommand:        /usr/bin/dwb %s
-xpdf*initialZoom: width
-xpdf*contiunous: true
-xpdf*viKeys: true
-!}}}
-!{{{ Xclipboard
-xclipboard.geometry:      287x195+993+15
-XClipboard*international: true
-XClipboard*font:          -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-2
-XClipboard*borderColor:   #3F3F3F
-XClipboard*cursorColor:   Gray93
-XClipboard*Foreground:    #F0DFAF
-XClipboard*Background:    #3F3F3F
-XClipboard*form.*.shapeStyle: rectangle
-!}}}
+
+! yeahconsole
+yeahconsole*restart: 1
+yeahconsole*term:urxvt
+yeahconsole*toggleKey: ControlAlt+y
+yeahconsole*background:black
+
+! Pseudo Transparency
+!urxvt*shading:    15
+yeahconsole*shading:    15
+!urxvt*transparent:true
+yeahconsole*transparent:true
+!urxvt.tintColor: white
+yeahconsole.tintColor: white
+
+yeahconsole*foreground:white
+yeahconsole*screenWidth:1920
+yeahconsole*anyDelay:5
+yeahconsole*consoleHeight:70
+

@@ -1,0 +1,45 @@
+#! /bin/sh
+
+sxhkd &
+
+bspc monitor -d 1 2 3 4 5 6 7 8 9 10
+
+# numérotation de multi-monitor (bof et pb de raccourci passé 10 ? )----------------------v
+#i=1
+#for monitor in $(bspc query -M); do
+#bspc monitor $monitor \
+        #-n "$i" \
+        #-d $i/{i,ii,iii,iv,v,vi,vii,viii,ix,x}
+    #let i++
+#done
+#NMON=$i
+#unset i
+# numérotation de monitor ----------------------------------------------------------------^
+
+bspc config border_width         2
+bspc config window_gap          12
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+bspc config focus_by_distance    true
+bspc config history_aware_focus  true
+
+# conky
+#bspc config right_padding 190
+bspc config bottom_padding 19
+
+bspc rule -a Gimp desktop='^8' state=floating follow=on
+bspc rule -a Chromium desktop='^2'
+bspc rule -a mplayer2 state=floating
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
+bspc rule -a cool state=floating
+
+# luke
+bspc config normal_frame_opacity 0.0
+bspc config focused_frame_opacity 0.1
+
+
+panel &
+/home/luke/bin/dzen_net.sh &
