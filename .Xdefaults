@@ -6,22 +6,23 @@
 !(_)_/\_\__,_|\___|_|  \__,_|\__,_|_|\__|___/
 !
 !.Xdefaults
-!Last modified: mercredi 27/04/2016 at 20:51:53
+!Last modified: samedi 31/01/2015 at 15:12:46
 !--------------------------------------------
 !
 ! URXVT
 ! General
-! transparency http://ctkarch.org/documentation/tutorials/tuto.php?page=urxvt-transpa.xml
+! space between text and border
+urxvt.internalBorder: 4
+! transparency
 urxvt.depth: 32
-!urxvt.background: [85]#1f1f1f
-urxvt.background: [90]#000000
-! comment for transparency
-!urxvt.tintColor
-!urxvt.inheritPixmap
+! niveau de transparence dans urxvt.background plus bas ...
+urxvt.transparent: true
+!urxvt.tintColor: #1f1f1f
+urxvt.shading: 20
 
 
-!space between text and border
-urxvt.internalBorder: 8
+
+
 urxvt*termName:           rxvt-unicode-256color
 urxvt*loginShell:         true
 ! cacher scrollbar (ascenseur)
@@ -39,9 +40,7 @@ URxvt.secondaryScroll: 0
 ! need in AUR: rxvt-unicode-better-wheel-scroling
 URxvt.secondaryWheel: 1
 ! end Scrollback buffer----------------------------------------------------------------++--/
-! reduc to perform
-!urxvt*saveLines:         65535
-urxvt*saveLines:         12000
+urxvt*saveLines:         65535
 urxvt*cursorBlink:       false
 !urxvt*cursorUnderline:   true
 urxvt*urgentOnBell:       true
@@ -53,10 +52,11 @@ URxvt*externalBorder:       0
 !urxvt*perl-lib:        /usr/lib/urxvt/perl
 
 ! Yankable URLs (no mouse)____________________++_
-URxvt*perl-ext: default,url-select,tabbedex
+!URxvt*perl-ext: default,url-select
+URxvt.perl-ext-common: default,url-select,config-reload
 ! paquet urxvt-perls (click and yank url)
 URxvt.keysym.M-u: perl:url-select:select_next
-URxvt.url-select.launcher: /usr/bin/qutebrowser
+URxvt.url-select.launcher: /usr/bin/dwb
 URxvt.url-select.underline: true
 ! man urxvt-perls
 ! Alt+U: enter selection mode. Last url selected. Repeat Alt+U to select next upward url.
@@ -68,38 +68,33 @@ URxvt.url-select.underline: true
 ! Esc Cancel url selection mode
 ! --------------------------------------------++--
 
-!!
+
 ! Catch ugly URLs
 urxvt*cutchars:        '"'()*<>[]{|}
 ! Appearance
-! font powerline pour vim : paquet: powerline-fonts-git
-urxvt*font:     -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-2,xft:Inconsolata\ for\ Powerline:pixelsize=12
-urxvt*boldFont: -xos4-terminus-bold-*-*-*-12-*-*-*-*-*-iso8859-2,xft:Inconsolata\ for\ Powerline:pixelsize=12
-!urxvt*font:xft:Terminus:pixelsize=12,xft:Inconsolata\ for\ Powerline:pixelsize=10
-!
-!
-!
+!urxvt*font:     -xos4-terminus-medium-*-*-*-14-*-*-*-*-*-iso8859-2,xft:Inconsolata\ for\ Powerline:pixelsize=12:antialiasing=true:hinting=true
+!urxvt*boldFont: -xos4-terminus-bold-*-*-*-14-*-*-*-*-*-iso8859-2,xft:Inconsolata\ for\ Powerline:pixelsize=12:antialiasing=true:hinting=true
+!urxvt*font: xft:Monofur\ for\ Powerline:size=12:antialiasing=true
+!urxvt*boldFont: xft:Monofur\ for\ Powerline:size=12:antialiasing=true
+!urxvt*font: xft:Roboto\ Mono\ for\ Powerline:size=12:antialiasing=true
+!urxvt*boldFont: xft:Roboto\ Mono\ Bold\ for\ Powerline\ Bold:size=12:antialiasing=true
+urxvt*font: xft:profont:size=8:antialiasing=false,xft:Inconsolata\ for\ Powerline:pixelsize=12:antialiasing=true:hinting=true
+urxvt*boldFont: xft:profont:size=8:antialiasing=false,xft:Inconsolata\ for\ Powerline:pixelsize=12:antialiasing=true:hinting=true
+
 ! Cursor
 !urxvt*cursorColor: #DCDCCC
-!!urxvt*cursorColor: yellow
+urxvt*cursorColor: yellow
 urxvt.cursorBlink: 1
 urxvt.cursorUnderline: 1
 ! URLs
-!colorful man pages
-! IT > ITalic
-urxvt*.colorIT:    #87af5f
-! BD > BolD
-urxvt*.colorBD:    #d7d7d7
-! UL > UnderLine
-urxvt*.colorUL:    #87afd7
+urxvt*.colorUL:    #ffffff
 ! Pseudo Transparency
-!urxvt*shading:    15
+!urxvt*shading:    50
 !urxvt*transparent:true
-!urxvt.tintColor: white
-
 ! Zenburn color-scheme
 !urxvt*background:  #3f3f3f
-!urxvt*background:  #1f1f1f
+!urxvt*background: #1f1f1f
+urxvt*background: [85]#1f1f1f
 urxvt*foreground:  #dcdccc
 ! black + red
 !urxvt*color0:     #3f3f3f
@@ -127,79 +122,13 @@ urxvt*color13:     #ec93d3
 urxvt*color14:     #93e0e3
 urxvt*color15:     #ffffff
 
-
-
-
-
-
-
-
-!{{{ XFONTSEL
-XFontSel*menu*showUnselectable:       false
-XFontSel*sampleText.background:      TEXTBG
-XFontSel*MenuButton.shadowWidth:          0
-XFontsel*Toggle*ToggleStyle:          check
-XFontsel*MenuButton*Justify:           left
-XFontsel*MenuButton*MenuButtonStyle: select
-xfontsel*Font: -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-2
-xfontsel.pane.commandBox.quitButton.background:           #777777
-xfontsel.pane.commandBox.quitButton.foreground:           snow
-xfontsel.pane.commandBox.ownButton.background:            orange3
-xfontsel.pane.commandBox.ownButton.foreground:            snow
-xfontsel.pane.commandBox.countLabel.background:           snow
-xfontsel.pane.viewPort.sampleText.background:             #777777
-xfontsel.pane.viewPort.sampleText.foreground:             snow
-xfontsel.pane.fieldBox.field0.background:  #777777
-xfontsel.pane.fieldBox.field0.foreground:  snow
-xfontsel.pane.fieldBox.field1.background:  #777777
-xfontsel.pane.fieldBox.field1.foreground:  snow
-xfontsel.pane.fieldBox.field2.background:  #777777
-xfontsel.pane.fieldBox.field2.foreground:  snow
-xfontsel.pane.fieldBox.field3.background:  #777777
-xfontsel.pane.fieldBox.field3.foreground:  snow
-xfontsel.pane.fieldBox.field4.background:  #777777
-xfontsel.pane.fieldBox.field4.foreground:  snow
-xfontsel.pane.fieldBox.field5.background:  #777777
-xfontsel.pane.fieldBox.field5.foreground:  snow
-xfontsel.pane.fieldBox.field6.background:  #777777
-xfontsel.pane.fieldBox.field6.foreground:  snow
-xfontsel.pane.fieldBox.field7.background:  #777777
-xfontsel.pane.fieldBox.field7.foreground:  snow
-xfontsel.pane.fieldBox.field8.background:  #777777
-xfontsel.pane.fieldBox.field8.foreground:  snow
-xfontsel.pane.fieldBox.field9.background:  #777777
-xfontsel.pane.fieldBox.field9.foreground:  snow
-xfontsel.pane.fieldBox.field10.background: #777777
-xfontsel.pane.fieldBox.field10.foreground: snow
-xfontsel.pane.fieldBox.field11.background: #777777
-xfontsel.pane.fieldBox.field11.foreground: snow
-xfontsel.pane.fieldBox.field12.background: #777777
-xfontsel.pane.fieldBox.field12.foreground: snow
-xfontsel.pane.fieldBox.field13.background: #777777
-xfontsel.pane.fieldBox.field13.foreground: snow
-xfontsel.pane.fieldBox*foreground:         #000000
-xfontsel.pane.fieldBox.MenuButton.borderWidth:   1
-xfontsel.pane.fieldBox.MenuButton.internalHeight:1
-xfontsel.pane.fieldBox.MenuButton.internalWidth: 2
-xfontsel.pane.fieldBox.MenuButton.shapeStyle:    rectangle
-!}}}
-
-! yeahconsole
-yeahconsole*restart: 1
-yeahconsole*term:urxvt
-yeahconsole*toggleKey: ControlAlt+y
-yeahconsole*background:black
-
-! Pseudo Transparency
-!urxvt*shading:    15
-yeahconsole*shading:    15
-!urxvt*transparent:true
-yeahconsole*transparent:true
-!urxvt.tintColor: white
-yeahconsole.tintColor: white
-
-yeahconsole*foreground:white
-yeahconsole*screenWidth:1920
-yeahconsole*anyDelay:5
-yeahconsole*consoleHeight:70
-
+! rofi
+rofi.background: #3f3f3f
+rofi.foreground: #dcdccc
+rofi.highlightbg: #1aa
+rofi.highlightfg: #111
+rofi.bordercolor: #277
+rofi.font: terminus 8
+rofi.padding: 3
+rofi.lines: 5
+rofi.borderwidth: 3
