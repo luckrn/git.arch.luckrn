@@ -1,0 +1,31 @@
+PANEL_FIFO=/tmp/panel-fifo
+PANEL_HEIGHT=23
+PANEL_GEO=1898x23+11+0
+MON=0
+FONT_FAMILY='terminus-8:Regular'
+ICON_FONT='i3fonticon-10:Regular'
+
+# Colors
+CLR0='#ff2e1f1f'		#BLACK
+CLR1='#ffaa0e50'		#RED
+CLR2='#ff1dcc9f'		#GREEN
+CLR3='#ff27c282'		#YELLOW
+CLR4='#ff7182a8'		#BLUE
+CLR5='#ffa673a6'		#ORANGE
+CLR6='#ff6da3a1'		#CYAN
+CLR7='#ffb7bbbd'		#WHITE
+
+CLR_BG='#FF111111'
+CLR_FG='#FFECEDEE'
+
+# Commands
+AC='%{A:'											# start click area
+AB=':}'												# end click area cmd
+AE='%{A}'											# end click area
+goto='herbstclient use'       				# go to this desktop
+
+# Icons
+DO=''												# occupied desktop
+DF=''												# free desktop
+
+SEP=" "

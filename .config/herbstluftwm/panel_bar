@@ -1,0 +1,34 @@
+#!/bin/sh
+
+. /home/luke/.config/herbstluftwm/panel_config
+
+while read -r line ; do
+	case $line in
+		T*)
+			# clock output
+			clock="${AC}~/.config/bspwm/bar/scripts/dzen_cal${AB}%{F$CLR_FG} ${line#?}  %{F-}${AE}"	
+			;;
+		C*)
+			cpu="%{F$CLR_FG} ${line#?}  %{F-}"	
+			;;
+		M*)
+			mem="%{F$CLR_FG} ${line#?}  %{F-}"	
+			;;
+		V*)
+			vol="${line#?}"
+			;;
+	    #     S*)
+            # wifi="${line#?}"
+	    #             ;;
+		# B*)
+		#         batt="${line#?}"
+		#         ;;
+		# X*)
+		#         mpd="${line#?}"
+		#         ;;
+		W*)
+			wm_infos="${line#?}"
+			;;
+	esac
+	printf "%s\n" "%{l}$mpd%{c}$wm_infos%{r}$cpu$SEP$mem$SEP$wifi$SEP$vol$SEP$batt$SEP$date$SEP$clock"
+done

@@ -1,0 +1,166 @@
+#!/bin/sh
+
+. /home/luke/.config/herbstluftwm/panel_config
+
+if [ $(pgrep -cx panel) -gt 1 ] ; then
+    pkill -o panel
+fi
+
+trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
+
+[ -e "$PANEL_FIFO" ] && rm "$PANEL_FIFO"
+mkfifo "$PANEL_FIFO"
+
+herbstclient pad $MON $PANEL_HEIGHT
+
+# clock -i30 -sf 'T%d %b, %a // %H:%M' > "$PANEL_FIFO" &
+ 
+while [[ true ]]; do
+    state=$(pulseaudio-ctl | grep 'Is sink muted' | awk '{ print $5}')
+    if [ $(echo $state | cut -d ' ' -f 1) == "off" ]; then
+        vol_icon="%{F$CLR6}%{F-}"
+        vol_percent="yes"
+        echo "V" "%{F$CLR_FG}${vol_icon} ${vol_percent}%{F-}" > "$PANEL_FIFO"
+    else
+        # vol_percent=$(pulseaudio-ctl | grep "Volume level" | cut -c 39-41)
+	# luke
+        vol_percent=$(/home/luke/bin/H_volume.sh)
+        # if [ $vol_percent -gt 66 ]; then
+        #     vol_icon=
+        # elif [ $vol_percent -gt 33 ]; then
+        #     vol_icon=
+        # else
+        #     vol_icon=
+        # fi
+        echo "V" "%{F$CLR_FG}${vol_icon} ${vol_percent}%{F-}" > "$PANEL_FIFO"
+    fi
+    
+  if [ "$(pidof mpd)" ];  then
+    if [ "$(mpc status |grep playing)" ]; then
+          currentsong=$(mpc current)
+          mpd_icon=
+          playing="$currentsong"
+          echo "X" "%{F$CLR_FG}${AC}mpc toggle${AB}${mpd_icon} ${AE}$playing "
+        else
+          mpd_icon=
+          playing="Stopped..."
+          echo "X" "%{F$CLR_FG}${AC}mpc toggle${AB}${mpd_icon} ${AE}$playing "
+    fi
+  else
+    mpd_icon=
+    playing="Stopped..."
+    echo "X" "%{F$CLR_FG}${AC}mpc toggle${AB}${mpd_icon} ${AE}$playing "
+  fi
+
+    sleep 1
+done > $PANEL_FIFO &
+
+while [[ true ]]; do
+    mem=$(free -m| grep  Mem | awk '{ print int($3/$2*100) }')
+    read cpu a b c previdle rest < /proc/stat
+    prevtotal=$((a+b+c+previdle))
+    sleep 0.5
+    read cpu a b c idle rest < /proc/stat
+    total=$((a+b+c+idle))
+    cpu=$((100*( (total-prevtotal) - (idle-previdle) ) / (total-prevtotal) ))
+    echo "C $cpu"
+    echo "M $mem"
+    echo date
+    sleep 3
+done > $PANEL_FIFO &
+
+# while [[ true ]]; do
+#         QUAL=`iwconfig wlp3s0 | grep 'Link Quality=' | awk '{gsub(/[=/]/," "); print $3}'`
+#         MAX=`iwconfig wlp3s0 | grep 'Link Quality=' | awk '{gsub(/[=/]/," "); print $4}'`
+#         PERC=`echo $QUAL*100/$MAX | bc`
+#         # SSID=$(essid -w wlp3s0)
+#
+#         if [[ $PERC -le 15 ]]; then
+#                         icon=""
+#         elif [[ $PERC -le 40 ]]; then
+#                         icon=""
+#         elif [[ $PERC -le 70 ]]; then
+#                         icon=""
+#         elif [[ $PERC -le 100 ]]; then
+#                         icon=""
+#         fi
+#
+#     if [ "$SSID" != "" ]; then
+#         essid="$SSID"
+#     else
+#         essid="Bağlantı Yok!"
+#                 icon=""
+#     fi
+
+	# echo "S" "%{F$CLR_FG}$icon ${essid}%{F-}"
+
+#     sleep 3
+# done > $PANEL_FIFO &
+
+# while [[ true ]]; do
+#             batt=$(battery -n 0)
+#             bat_perc=$(echo $batt | cut -d ' ' -f 2)
+#             bat_status=$(echo $batt | cut -d ' ' -f 1)
+#
+#             if [ $bat_perc -gt 75 ]; then
+#                 bat_color=$CLR_FG
+#                 bat_symbol=""
+#             elif [ $bat_perc -gt 50 ]; then
+#                 bat_color=$CLR_FG
+#                 bat_symbol=""
+#             elif [ $bat_perc -gt 30 ]; then
+#                 bat_color=$CLR_FG
+#                 bat_symbol=""
+#             elif [ $bat_perc -gt 15 ]; then
+#                 bat_color=$CLR2
+#                 bat_symbol=""
+#             else
+#                 bat_color=$CLR1
+#                 bat_symbol=""
+#             fi
+#
+#             if [ $bat_status == "Charging" ]; then
+#                 bat_symbol=""
+#             fi
+#
+#             echo "B" "%{F$bat_color}$bat_symbol ${bat_perc}%{F-}"
+#
+#     sleep 30
+# done > $PANEL_FIFO &
+
+
+while [[ true ]]; do
+			wm_infos=""
+			TAGS=( $(herbstclient tag_status $monitor) )
+			for i in "${TAGS[@]}" ; do
+				case ${i:0:1} in
+					'#')
+						# focused occupied desktop
+						wm_infos="${wm_infos}%{F$CLR_FG}%{B$CLR0}%{U$CLR1}%{+u}${AC}${goto} ${i:1}${AB}  ${i:1} ${AE}%{-u}%{B-}%{F-}"
+						;;
+					'+')
+						# focused free desktop
+						wm_infos="${wm_infos}%{F$CLR_FG}%{B$CLR0}%{U$CLR1}%{+u}${AC}${goto} ${i:1}${AB}  ${i:1} ${AE}%{-u}%{B-}%{F-}"
+						;;
+					'!')
+						# focused urgent desktop
+						wm_infos="${wm_infos}%{F$CLR_FG}%{B$CLR0}%{U$CLR1}%{+u}${AC}${goto} ${i:1}${AB}  ${i:1} ${AE}%{-u}%{B-}%{F-}"
+						;;
+					':')
+						# occupied desktop
+						wm_infos="${wm_infos}%{F$CLR_FG}%{B$CLR0}%{U$CLR2}%{+u}${AC}${goto} ${i:1}${AB}  ${i:1} ${AE}%{-u}%{B-}%{F-}"
+						;;
+					 *)
+						# free desktop
+						wm_infos="${wm_infos}%{F$CLR_FG}%{B$CLR0}%{U$CLR4}%{+u}${AC}${goto} ${i:1}${AB}  ${i:1} ${AE}%{-u}%{B-}%{F-}"
+						;;
+				esac
+				# shift
+			done
+	echo "W$wm_infos"
+    sleep .3
+done > $PANEL_FIFO &
+
+/home/luke/.config/herbstluftwm/panel_bar < "$PANEL_FIFO" | lemonbar -g $PANEL_GEO -f $FONT_FAMILY -f $ICON_FONT -F $CLR_FG -B $CLR_BG -u 4 -a 11  | while read line; do eval "$line"; done &
+
+wait
